@@ -1,0 +1,19 @@
+
+@media screen and (max-width : $container-width){
+
+    .table-responsive{
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        -webkit-overflow-scrolling: touch;
+
+        table{
+            tbody{
+                td{
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}

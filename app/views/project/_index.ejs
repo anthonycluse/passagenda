@@ -1,0 +1,59 @@
+<% layout('../_layout'); %>
+<div class="panel">
+  <div class="ui-tool">
+    <ul>
+        <li><a href="/project/new">Ajouter un projet</a></li>
+        <li><a href="/project/category/_index">Mes catégories</a></li>
+        <li><a href="/project/category/new">Ajouter une catégorie</a></li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+</div>
+<div class="space10"></div>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des projets</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Description</th>
+            <th>Miniature</th>
+            <th>Catégorie</th>
+            <th>Etat</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if( projects.length ){ %>
+          <% projects.forEach(function(project){ %>
+          <tr>
+            <td><%- project.title %></td>
+            <td><%- project.author %></td>
+            <td><%=project.description.substr(0, 20)%>...</td>
+            <td><img src="/uploads/<%-project.thumbnail%>" height="25px"/></td>
+            <td><%-project.ProjectCategory.name%></td>
+            <td>
+              <% if(project.state === true){ %>
+              En ligne
+              <% }else{ %>
+              Hors-ligne
+              <% } %>
+            </td>
+            <td>
+              <a href="/project/edit/<%- project.id %>">Modifier</a> |
+              <a href="/project/delete/<%- project.id %>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+          <% }else{ %>
+          <tr><td><p class="danger" style="text-align: left;">Aucuns projets.</p></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

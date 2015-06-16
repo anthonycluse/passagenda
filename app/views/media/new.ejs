@@ -1,0 +1,19 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Ajout d'un média</h5></div>
+  <div class="ui-block-content">
+    <form action="/media/create" method="POST" class="form" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title" class="control-label">Titre *</label>
+        <input type="text" id="title" name="media[title]" class="form-control" placeholder="title" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="file" class="control-label">Fichier *</label>
+        <input type="file" id="file" name="file" class="form-control" placeholder="file" required>
+      </div>
+      <input type="submit" class="btn btn-default" value="Enregistrer">
+      <a href="/media" class="btn btn-primary">Retour à la liste</a>
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

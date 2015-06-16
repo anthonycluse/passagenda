@@ -1,0 +1,19 @@
+{
+  "name": "GestiawebCms",
+  "version": "0.0.0",
+  "authors": [
+    "Anthony Cluse"
+  ],
+  "license": "MIT",
+  "homepage": "/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

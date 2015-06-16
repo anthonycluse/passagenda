@@ -1,0 +1,24 @@
+{
+    "facebook": {
+        "clientID": "",
+        "clientSecret": "",
+        "callbackURL": "",
+        "smo": ""
+    },
+    "google": {
+        "returnURL": "",
+        "realm": "",
+        "smo": ""
+    },
+    "twitter": {
+        "consumerKey": "",
+        "consumerSecret": "",
+        "callbackURL": "",
+        "smo": ""
+    },
+    "github": {
+        "clientID": "",
+        "clientSecret": "",
+        "callbackURL": ""
+    }
+}

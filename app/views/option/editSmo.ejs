@@ -1,0 +1,23 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Gestion des réseaux sociaux</h5></div>
+  <div class="ui-block-content">
+    <form action="/option/smo/update" class="form" method="post">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <div class="form-group">
+        <label for="facebook">Facebook</label>
+        <input type="url" class="form-control" name="options[facebook]" placeholder="Lien de votre page/profil Facebook" value="<%-socials.facebook.smo%>">
+      </div>
+      <div class="form-group">
+        <label for="twitter">Twitter</label>
+        <input type="url" class="form-control" name="options[twitter]" placeholder="Lien de votre compte Twitter" value="<%-socials.twitter.smo%>">
+      </div>
+      <div class="form-group">
+        <label for="google">Google</label>
+        <input type="url" class="form-control" name="options[google]" placeholder="Lien de votre page/profil Google" value="<%-socials.google.smo%>">
+      </div>
+      <input type="submit" value="Enregistrer" class="btn">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

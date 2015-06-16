@@ -1,0 +1,106 @@
+/*
+ * Custom Form
+ * @Author Anthony Cluse
+*/
+.form{
+	margin: $form-margin;
+
+	.form-group{
+		margin: $form-group-margin;
+		display: block;
+
+		label{
+			display: inline-block;
+			margin: $form-group-label-margin;
+			font-weight: $form-group-label-font-weight;
+			color: $form-group-label-color;
+			text-transform: $form-group-label-text-transform;
+		}
+
+		input.form-control, select.form-control, textarea.form-control, select.form-control{
+			display: block;
+			width: calc(100% - 30px);;
+			padding: $form-control-padding;
+			border: $form-control-border-width $form-control-border-style $form-control-border-color;
+			color: $form-control-color;
+			background-color: $form-control-bg;
+			outline: none;
+			@include transition-property(box-shadow);
+			@include transition-duration(0.3s);
+			@include border-radius($form-control-border-radius);
+			@include placeholder{
+				color: $form-control-placeholder-color;
+			}
+
+			&:focus{
+				color: $form-control-focus-color;
+				border: $form-control-focus-border-width $form-control-focus-border-style $form-control-focus-border-color;
+				@include box-shadow($form-control-focus-box-shadow);
+			}
+		}
+
+		select.form-control{
+			width: auto;
+		}
+
+		%help{
+			display: block;
+			margin: $help-margin;
+		}
+
+		.help-block {
+			@extend %help;
+			color: $green;
+		}
+
+		.info-block {
+			@extend %help;
+			color: $blue;
+		}
+
+		.alert-block {
+			@extend %help;
+			color: $red;
+		}
+
+		input[type='submit'], input[type='reset']{
+			margin: 0 15px 0 0;
+			@extend .btn;
+
+			&:focus{ @include box-shadow(none) }
+		}
+	}
+
+	.checkbox{
+		display: block;
+		margin: 0 0 25px 0;
+
+		label {
+			display: inline;
+			cursor: pointer;
+			font-weight: $form-group-label-font-weight;
+			color: $form-group-label-color;
+			text-transform: $form-group-label-text-transform;
+		}
+
+		input[type='checkbox']{
+			margin-right: 0 5px 0 0;
+		}
+	}
+
+	.radio{
+		display: block;
+		margin: 0 0 25px 0;
+
+		label {
+			display: block;
+			cursor: pointer;
+			margin: 0 0 10px 0;
+			font-weight: $form-group-label-font-weight;
+			color: $form-group-label-color;
+			text-transform: $form-group-label-text-transform;
+		}
+
+		input[type='radio']{ margin-right: 0 5px 0 0; }
+	}
+}

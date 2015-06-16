@@ -1,0 +1,24 @@
+{
+	"modules": {
+		"portfolio": {
+			"thumbnail": {
+				"imgWidth": "260",
+				"imgHeight": "260"
+			},
+			"photo": {
+				"imgWidth": "578",
+				"imgHeight": "433"
+			}
+		},
+		"blog": {
+			"thumbnail": {
+				"imgWidth": "346",
+				"imgHeight": "172"
+			}
+		}
+	},
+	"logo": {
+		"imgWidth": "152",
+		"imgHeight": "100"
+	}
+}

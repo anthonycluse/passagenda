@@ -1,0 +1,70 @@
+<% layout('../layout'); %>
+
+<div class="textAlignCenter">
+  <h2 class="blueColor">Tableau de bord</h2>
+  <h3 class="orangeColor"><%-day%> <%-date.month()+1%> <%-month%></h3>
+</div>
+<div class="grid-4 alpha">
+  <div class="ui-block">
+    <div class="ui-block-title">Statistiques</div>
+    <div class="ui-block-content">
+      <div class="ui-circle">
+        <div class="ui-circle-title" style="margin-top: 15px;"><%-appointmentsOfTheDay.length%></div>
+        <div class="ui-circle-content">Rendez-vous<br>aujourd'hui</div>
+      </div>
+      <div class="space10"></div>
+      <div class="ui-circle">
+        <div class="ui-circle-title"><%-customers.length%></div>
+        <div class="ui-circle-content">Clients</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="grid-4">
+  <div class="ui-block">
+    <div class="ui-block-title">
+      <h5>Mes cinq derniers rendez-vous</h5>
+    </div>
+    <div class="ui-block-content">
+      <% if(fiveLastAppointments.length ){ %>
+        <% fiveLastAppointments.forEach(function(apt){ %>
+        <p><%-apt.customer.firstname%> <%-apt.customer.lastname%> le <%-apt.start%></p>
+      <% }); %>
+      <% }else{ %>
+      Aucuns rendez-vous.
+      <div class="space20"></div>
+      <a href="/appointment/new">Ajouter un rendez-vous</a>
+      <% } %>
+    </div>
+  </div>
+</div>
+<div class="grid-4 omega">
+  <div class="ui-block">
+    <div class="ui-block-title">
+      <h5>Tchat</h5>
+    </div>
+    <div class="ui-block-content">
+      <div class="discussion">
+        <div class="discussion-messages" style="max-height: 200px; overflow-y: scroll; height: 200px;"></div>
+      </div>
+      <form action="#" class="form" method="post" id="discussion-form">
+        <div class="form-group">
+          <label for="message">Message</label>
+          <input type="text" id="message" class="form-control" placeholder="Votre message" name="message" required>
+        </div>
+        <div class="form-control">
+          <input type="submit" value="Envoyer" class="btn btn-info">
+          <div class="clear"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/sockets.js"></script>
+<script>
+  $(function () {
+    initialize('<%-request.user.username%>');
+  });
+</script>

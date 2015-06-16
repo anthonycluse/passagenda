@@ -1,0 +1,69 @@
+@mixin placeholder{
+  &::-webkit-input-placeholder { @content }
+  &:-moz-placeholder { @content }
+  &::-moz-placeholder { @content }
+  &:-ms-input-placeholder { @content }
+}
+
+@mixin set-grids{
+  @for $i from 1 through $total-columns{
+    div.grid-#{$i}{
+      width: ( $i * $column-width ) + ( ( $i - 1 ) * $gutter-width );
+      float: left;
+      margin: 0 $gutter-width/2 0 $gutter-width/2;
+    }
+  }
+  div.grid-12{ margin: 0; }
+  div.alpha{ margin-left: 0 }
+  div.omega{ margin-right: 0  }
+}
+
+@mixin set-ui-grids(){
+  @for $i from 1 through $total-columns{
+    $gutters : calc($ui-container-gutter * 2);
+    $sous : ( ( (12 / $i) * 2 ) - 2 );
+    div.grid-#{$i}{
+      width: calc( #{100% - $sous} / #{12 / $i} );
+      float: left;
+      margin: 0 1% 0 1%;
+    }
+  }
+  div.grid-12{width: 100%; margin: 0;}
+  div.alpha{margin-left: 0}
+  div.omega{margin-right: 0}
+}
+
+@mixin backgroundColors($color, $hoverColor){
+  background-color: $color;
+
+  &:hover{ background-color: $hoverColor; }
+}
+
+@mixin backgroundImage($path, $ext, $w: auto, $h: auto){
+  $normalPath: "../images/#{$path}.#{$ext}";
+  $retinaPath: "../images/#{$path}@2x.#{$ext}";
+  background-image: url("#{$normalPath}");
+
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx) {
+    background-image: url("#{$retinaPath}");
+    background-size: $w $h;
+  }
+}
+
+@mixin alert($color){
+  background-color: $color;
+  color: #000000;
+  @include transition-property(background-color, padding);
+  @include transition-duration(0.3s);
+  &:hover{
+    background-color: lighten($color, 10%);
+    padding-left: 15px;
+  }
+}
+
+@mixin button($color){
+  @include backgroundColors($color, darken($color, 10%));
+  color: #FFFFFF;
+  border: none;
+  &:hover{ color: #FFFFFF; }
+}

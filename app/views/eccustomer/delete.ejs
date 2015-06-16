@@ -1,0 +1,13 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression de "<%-customer.email%>"</h5></div>
+  <div class="ui-block-content">
+    <p>Voulez vous vraiment supprimer le client "<%-customer.email%>" ?</p>
+    <form action="/eccustomer/destroy" method="post" class="form">
+      <input type="hidden" name="_csrf" value="<%-csrfToken%>">
+      <input type="hidden" name="id" value="<%-customer.id%>">
+      <input type="submit" class="btn" value="Oui le supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

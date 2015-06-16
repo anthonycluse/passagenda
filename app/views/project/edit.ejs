@@ -1,0 +1,44 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Modification d'un projet</h5></div>
+  <div class="ui-block-content">
+    <form action="/project/update" method="POST" class="form">
+      <input type="hidden" name="project[id]" value="<%- project.id %>">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <div class="form-group">
+        <label for="title" class="control-label">Titre</label>
+        <input type="text" id="title" name="project[title]" class="form-control" placeholder="Titre de votre projet" value="<%- project.title %>">
+      </div>
+      <div class="form-group">
+        <label for="author" class="control-label">Auteur</label>
+        <input type="text" id="author" name="project[author]" class="form-control" placeholder="Auteur de votre projet" value="<%- project.author %>">
+      </div>
+      <div class="form-group">
+        <label for="place" class="control-label">Lieu</label>
+        <input type="text" id="place" name="project[place]" class="form-control" placeholder="Lieu de votre projet" value="<%- project.author %>">
+      </div>
+      <div class="form-group">
+        <label for="description" class="control-label">Description</label>
+        <textarea name="project[description]" id="description" class="form-control" cols="30" rows="10"><%-project.description%></textarea>
+      </div>
+      <div class="form-group">
+        <label for="link" class="control-label">Lien</label>
+        <input type="url" id="link" name="project[link]" class="form-control" placeholder="Lien vers le projet" value="<%-project.link%>">
+      </div>
+      <div class="form-group">
+        <label for="state" class="control-label">Etat</label>
+        <select name="project[state]" id="state" class="form-control">
+          <% if( project.state === true ){ %>
+          <option value="1">En ligne</option>
+          <option value="0">Hors-ligne</option>
+          <% }else{ %>
+          <option value="0">Hors-ligne</option>
+          <option value="1">En ligne</option>
+          <% } %>
+        </select>
+      </div>
+      <input type="submit" class="btn btn-default" value="Enregistrer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

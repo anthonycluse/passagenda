@@ -1,0 +1,17 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Aperçus du produit "<%=product.name%>"</h5></div>
+  <div class="ui-block-content">
+    <p>
+      <strong>Nom du produit :</strong> <%=product.name%>
+    </p>
+    <p>
+      <strong>Description du produit :</strong> <%=product.description%>
+    </p>
+    <p>
+      <strong>Image du produit :</strong> <img src="/uploads/<%=product.thumbnail%>" style="margin: 10px 0; max-width: 300px;">
+    </p>
+    <a href="/ecproduct/_index" class="btn">Retour à la liste des produits</a>
+    <div class="clear"></div>
+  </div>
+</div>

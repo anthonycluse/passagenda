@@ -1,0 +1,66 @@
+/*
+ * Types
+ * @Author Anthony Cluse
+*/
+
+h1{
+	font-size: $font-size-h1;
+}
+
+h2{
+	font-size: $font-size-h2;
+}
+
+h3{
+	font-size: $font-size-h3;
+}
+
+h4{
+	font-size: $font-size-h4;
+}
+
+h5{
+	font-size: $font-size-h5;
+}
+
+h2.blueColor{
+	color: $blueColor;	
+}
+
+h3.orangeColor{
+	color: $orangeColor;
+	text-transform: uppercase;
+}
+
+strong{
+	font-weight: $strong-font-weight;
+}
+
+em{
+	font-style: $em-font-style;
+}
+
+a{
+	text-decoration: $a-text-decoration;
+	@include link-colors($a-color, $a-hover-color);
+}
+
+p.success{
+	color: $green;
+	margin: 0;
+}
+
+p.info{
+	color: $blue;
+	margin: 0;
+}
+
+p.warning{
+	color: $yellow;
+	margin: 0;
+}
+
+p.danger{
+	color: $red;
+	margin: 0;
+}

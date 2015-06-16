@@ -1,0 +1,182 @@
+<% layout('../_layout') %>
+
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Ajout d'un événement</h5></div>
+  <div class="ui-block-content">
+    <form action="/event/create" method="POST" class="form">
+
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+
+      <div class="form-group">
+        <label for="title" class="control-label">Titre</label>
+        <input type="text" id="title" name="event[title]" class="form-control" placeholder="Titre de votre événement">
+      </div>
+
+      <div class="form-group">
+        <label for="start" class="control-label">Début</label>
+        <select name="event[startday]">
+          <% for(var i = 1; i <= 31; i++ ){ %>
+          <% if( day === i ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>" selected>0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>" selected><%-i%></option>
+          <% } %>
+          <% }else{ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>">0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>"><%-i%></option>
+          <% } %>
+          <% } %>
+          <% } %>
+        </select>
+        /
+        <select name="event[startmonth]">
+          <% for(var i = 1; i <= 12; i++ ){ %>
+          <% if( month === i ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>" selected>0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>" selected><%-i%></option>
+          <% } %>
+          <% }else{ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>">0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>"><%-i%></option>
+          <% } %>
+          <% } %>
+          <% } %>
+        </select>
+        /
+        <select name="event[startyear]">
+          <% for(var i = 1894; i <= 2020; i++ ){ %>
+          <% if( year === i ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>" selected>0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>" selected><%-i%></option>
+          <% } %>
+          <% }else{ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>">0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>"><%-i%></option>
+          <% } %>
+          <% } %>
+          <% } %>
+        </select>
+        à
+        <select name="event[starthour]">
+          <% for(var i = 7; i <= 21; i++ ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>" selected>0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>" selected><%-i%></option>
+          <% } %>
+          <% } %>
+        </select>
+        :
+        <select name="event[startminute]">
+          <% for(var i = 0; i <= 59; i++ ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>" selected>0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>" selected><%-i%></option>
+          <% } %>
+          <% } %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="end" class="control-label">Fin</label>
+        <select name="event[endday]">
+          <% for(var i = 1; i <= 31; i++ ){ %>
+          <% if( day === i ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>" selected>0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>" selected><%-i%></option>
+          <% } %>
+          <% }else{ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>">0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>"><%-i%></option>
+          <% } %>
+          <% } %>
+          <% } %>
+        </select>
+        /
+        <select name="event[endmonth]">
+          <% for(var i = 1; i <= 12; i++ ){ %>
+          <% if( month === i ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>" selected>0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>" selected><%-i%></option>
+          <% } %>
+          <% }else{ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>">0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>"><%-i%></option>
+          <% } %>
+          <% } %>
+          <% } %>
+        </select>
+        /
+        <select name="event[endyear]">
+          <% for(var i = 1894; i <= 2020; i++ ){ %>
+          <% if( year === i ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>" selected>0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>" selected><%-i%></option>
+          <% } %>
+          <% }else{ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>">0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>"><%-i%></option>
+          <% } %>
+          <% } %>
+          <% } %>
+        </select>
+        à
+        <select name="event[endhour]">
+          <% for(var i = 7; i <= 21; i++ ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>">0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>"><%-i%></option>
+          <% } %>
+          <% } %>
+        </select>
+        :
+        <select name="event[endminute]">
+          <% for(var i = 0; i <= 59; i++ ){ %>
+          <% if( i < 10 ){ %>
+          <option value="0<%-i%>">0<%-i%></option>
+          <% }else{ %>
+          <option value="<%-i%>"><%-i%></option>
+          <% } %>
+          <% } %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Catégorie</label>
+        <select name="event[EventCategoryId]" id="category" class="form-control">
+          <% categories.forEach( function(category){ %>
+          <option value="<%-category.id%>"><%-category.name%></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <input type="submit" class="btn btn-default" value="Enregistrer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

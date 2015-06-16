@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <title>Gestiaweb - Glovebox</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="/stylesheets/bottom.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/app.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link rel='stylesheet' href='/stylesheets/vendors/fullcalendar.min.css' />
+</head>
+<body ng-app="GestiawebApp">
+  <script src="/javascripts/vendors/jquery.min.js"></script>
+  <script src='/javascripts/vendors/moment.min.js'></script>
+  <script src='/javascripts/vendors/fullcalendar.min.js'></script>
+  <script src="/javascripts/vendors/fr.js"></script>
+  <script src='/javascripts/vendors/angular.min.js'></script>
+  <script src="/javascripts/ckeditor/ckeditor.js"></script>
+  <script src='/javascripts/app.js'></script>
+  <script src='/javascripts/index.js'></script>
+  <script src="/javascripts/bottom.js"></script>
+  <script src="/javascripts/controllers/EcOrderController.js"></script>
+
+  <div class="container">
+    <%-partial('_shared/_top-bar')%>
+    <div class="clear"></div>
+  </div>
+  <div class="ui-wrapper">
+    <div class="ui-left-bar-bg"></div>
+    <div class="ui-left-bar">
+      <%-partial('_shared/_left-bar-cms')%>
+      <%-partial('_shared/_left-bar-link')%>
+      <%-partial('_shared/_left-bar-contact')%>
+      <%-partial('_shared/_left-bar-media')%>
+      <% if( request.user.pack === 'avantage' || request.user.right === 0 ){ %>
+      <% if( options.modules.blog.state ) { %>
+      <%-partial('_shared/_left-bar-blog')%>
+      <% } %>
+      <% if( options.modules.portfolio.state ) { %>
+      <%-partial('_shared/_left-bar-portfolio')%>
+      <% } %>
+      <% if( options.modules.file.state ) { %>
+      <%-partial('_shared/_left-bar-file')%>
+      <% } %>
+      <% if( options.modules.event.state ) { %>
+      <%-partial('_shared/_left-bar-event')%>
+      <% } %>
+      <%-partial('_shared/_left-bar-eccommerce')%>
+      <% } %>
+    </div>
+    <div class="ui-container">
+      <div class="grid-12"><%-partial('_shared/_flash')%></div>
+      <div class="clear"></div>
+      <div class="grid-12"><%-body%></div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<% layout('../_layout'); %>
+
+<div class="textAlignCenter">
+  <h2 class="blueColor">Tableau de bord (<%-options.pack%>)</h2>
+  <h3 class="orangeColor"><%-dayName%> <%-dayNumber%> <%-monthName%></h3>
+</div>
+<div class="grid-12">
+  <div class="panel">
+    <h4>Bienvenue dans Gestiaweb</h4>
+    <ul>
+      <li><a href="/option/edit">Gérer les paramètres de votre site internet</a></li>
+      <li><a href="/option/seo/edit">Gérer le référencement de votre site internet</a></li>
+      <li><a href="/page/_index">Gérer les pages de votre site internet</a></li>
+    </ul>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="space10"></div>
+<div class="grid-6 alpha">
+  <div class="ui-block">
+    <div class="ui-block-title">Quelques chifres</div>
+    <div class="ui-block-content">
+      <div style="display: flex;">
+        <div class="ui-circle">
+          <div class="ui-circle-title"><%-pages.length%></div>
+          <div class="ui-circle-content">
+            <% if( pages.length > 1 ){ %>
+            Pages
+            <% }else{ %>
+            Page
+            <% } %>
+          </div>
+        </div>
+        <div class="ui-circle">
+          <div class="ui-circle-title"><%-links.length%></div>
+          <div class="ui-circle-content">
+            <% if( links.length > 1 ){ %>
+            Liens
+            <% }else{ %>
+            Lien
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="ui-block">
+    <div class="ui-block-title">Météo (Bientôt disponible)</div>
+    <div class="ui-block-content">
+      <% if (options.lat && options.lng) { %>
+        <table class="table">
+          <tr>
+          </tr>
+        </table>
+      <% }else{ %>
+        <p>Vous n'avez pas encore saisie votre adresse. <a href="/option/contact/edit">Saisir mon adresse</a></p>
+      <% } %>
+    </div>
+  </div>
+  <div class="space10"></div>
+  <div class="ui-block">
+    <div class="ui-block-title"><i>Bravo <%-request.user.username%>,</i></div>
+    <div class="ui-block-content">
+      <p style="margin: 0;">
+        <% if( request.user.right === 0 ){ %>
+        Votre êtes un utilisateur de type SUPER ADMINISTRATEUR.
+        <% }else if( request.user.right === 1 ){ %>
+        Votre êtes un utilisateur de type <strong>ADMINISTRATEUR</strong> avec les fonctions de l'offre <strong><%-request.user.pack%></strong> pour votre panel d'administration.
+        <% } %>
+        Actuellement vous utilisé le <strong>thème <%-options.theme%></strong>. Pour finir, le Front-End de votre site internet possède les fonctions du pack <strong><%-options.pack%></strong> !
+      </p>
+    </div>
+  </div>
+</div>

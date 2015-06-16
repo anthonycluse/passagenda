@@ -1,0 +1,159 @@
+<html>
+  <!DOCTYPE html>
+  <html lang="fr">
+    <head>
+      <title>
+        <% if(typeof seoTitle !== 'undefined') { %>
+        <%=seoTitle%>
+        <% } else { %>
+        <% if(typeof page !== 'undefined') { %>
+        <% if(page.seo_title) { %>
+        <%-page.seo_title%>
+        <% } else { %>
+        <%-options.title%>
+        <% } %>
+        <% } else if(typeof article !== 'undefined') { %>
+        <%-article.seo_title%>
+        <% } else if(options.title) { %>
+        <%-options.title%>
+        <% } else { %>
+        Gestiaweb CMS
+        <% } %>
+        <% } %>
+      </title>
+      <meta charset="utf-8" />
+      <meta name="description" content="<%-options.description%>">
+      <meta name="keywords" content="<%-options.keywords%>">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <link href="/stylesheets/bottom.css" media="screen, projection" rel="stylesheet" type="text/css" />
+      <link href="/stylesheets/app.css" media="screen, projection" rel="stylesheet" type="text/css" />
+      <link rel='stylesheet' href='/stylesheets/vendors/fullcalendar.min.css' />
+      <link rel="stylesheet" href="/stylesheets/vendors/flexslider.css" type="text/css">
+      <link rel="stylesheet" href="/stylesheets/vendors/social-likes_classic.css" type="text/css">
+      <link href="/stylesheets/themes/<%-options.theme%>.css" media="screen, projection" rel="stylesheet" type="text/css" />
+      <% if(typeof page === 'undefined' || page.title === 'Présentation') { %>
+      <style>
+        .top-bar .top-bar-wrapper .top-bar-ul .isActive a, .top-bar .top-bar-wrapper .top-bar-ul .isActive:hover a{
+          color: #2097c1;
+        }
+      </style>
+      <% } %>
+    </head>
+    <body>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdIrBSiFYDJtAGr1BYWIgphPQ_hnfnV3M" type="text/javascript"></script>
+      <script src="/javascripts/vendors/jquery.min.js"></script>
+      <script src='/javascripts/vendors/moment.min.js'></script>
+      <script src='/javascripts/vendors/fullcalendar.min.js'></script>
+      <script src="/javascripts/vendors/fr.js"></script>
+      <script src='/javascripts/vendors/angular.min.js'></script>
+      <script src="/javascripts/vendors/jquery.flexslider.js"></script>
+      <script src="/javascripts/vendors/social-likes.min.js"></script>
+      <script src="/javascripts/classes/Modal.js"></script>
+      <script src="/javascripts/classes/GoogleMap.js"></script>
+      <script src="/javascripts/ckeditor/ckeditor.js"></script>
+      <script src='/javascripts/app.js'></script>
+      <script src='/javascripts/index.js'></script>
+      <script src="/javascripts/bottom.js"></script>
+      <script src="/javascripts/themes/<%-options.theme%>.js"></script>
+
+      <% if(options.mode === '3' && !request.user) { %>
+      <div id="maintenance">
+        <div class="container">
+          <div class="grid-12">
+            <h1>"Mode maintenance"</h1>
+            <p>Création de site internet administrable par <a href="http://www.icecom.fr">Icecom</a></p>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <% }else if(options.mode === '2' && !request.user){ %>
+      <div id="maintenance">
+        <div class="container">
+          <div class="grid-12">
+            <h1>"Site en cours de construction"</h1>
+            <p>Création de site internet administrable par <a href="http://www.icecom.fr">Icecom</a></p>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <% }else{ %>
+
+      <div class="container">
+        <div class="grid-12">
+          <nav class="top-bar">
+            <div class="top-bar-wrapper">
+              <ul class="top-bar-ul">
+                <li class="top-bar-title" class="top-bar-img">
+                  <a href="/">
+                    <% if( options.logo !== '' ){ %>
+                    <img src="/uploads/<%-options.logo%>" alt="<%-options.title%>">
+                    <% }else{ %>
+                    <img src="/images/LOGO.png" alt="<%-options.title%>">
+                    <% } %>
+                  </a>
+                </li>
+                <li class="top-bar-divider"></li>
+                <%-partial('../../shared/linkSimple')%>
+                <div class="clear"></div>
+              </ul>
+            </div>
+            <button class="top-bar-toggle"></button>
+          </nav>
+          <div class="top-bar-space"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+      <%-body%>
+
+      <div id="description">
+        <div class="container" id="description">
+          <div class="grid-12"><div class="rw"><h1><%=options.description ? options.description : 'Description de votre site internet'%></h1></div></div>
+          <div class="clear"></div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="grid-3 alpha">
+            <div class="rw">
+              <p><%=options.address ? options.address : 'Adresse'%></p>
+              <p><%=options.complementary_address ? options.complementary_address : ''%></p>
+              <p><%=options.cp ? options.cp : 'Code postale'%></p>
+              <p><%=options.city ? options.city : 'Ville'%></p>
+            </div>
+          </div>
+          <div class="grid-9 omega">
+            <div class="rw">
+              <ul>
+                <%-partial('../../shared/linkSimple')%>
+                <li><a href="/mentions-legales">Mentions légales</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </footer>
+
+      <div id="copyright">
+        <p>Création de sites internet administrable par <a href="http://www.icecom.fr" target="_blank">Icecom</a></p>
+      </div>
+
+      <div id="cookie">
+        <p>Cool ce site utilise des cookies, si tu fermes ce message, tu acceptes donc nos mentions légales. <a href="/mentions-legales">Voir les mentions légales</a></p>
+        <button>&#10005;</button>
+      </div>
+      <% if( options.idga ){ %>
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', '<%-options.idga%>', 'auto');
+        ga('send', 'pageview');
+      </script>
+      <% } %>
+
+      <% } %>
+    </body>
+  </html>

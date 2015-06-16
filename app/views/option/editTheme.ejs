@@ -1,0 +1,58 @@
+<% layout('../_layout'); %>
+<div class="panel">
+  <div class="ui-tool">
+    <ul>
+        <li><a href="/option/css/edit">Edition du fichier CSS</a></li>
+        <li><a href="/option/logo/edit">Edition du logo</a></li>
+        <li><a href="/option/views/edit">Edition des fichiers HTML</a></li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+</div>
+<div class="space10"></div>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Gestion des thèmes</h5></div>
+  <div class="ui-block-content">
+    <div class="panel">
+      <p>Vous utilisez actuellement le thème <%=options.theme%></p>
+    </div>
+    <div class="space10"></div>
+    <div class="theme">
+      <figure>
+        <img src="/images/themes/basique/THUMBNAIL.jpg">
+        <figcaption>
+          Thème basique
+          <ul>
+            <li>CMS</li>
+            <li>Portfolio</li>
+            <li>Blog</li>
+            <li>Contact</li>
+            <li>Téléchargement</li>
+          </ul>
+        </figcaption>
+        <div class="light">
+          <a href="/option/theme/update/basique" class="btn btn-success">Choisir</a>
+        </div>
+      </figure>
+    </div>
+    <div class="theme">
+      <figure>
+        <img src="/images/themes/adms/THUMBNAIL.jpg">
+        <figcaption>
+          Thème adms
+          <ul>
+            <li>CMS</li>
+            <li>Portfolio</li>
+            <li>Blog</li>
+            <li>Contact + formulaire</li>
+            <li>Téléchargement</li>
+          </ul>
+        </figcaption>
+        <div class="light">
+          <a href="/option/theme/update/adms" class="btn btn-success">Choisir</a>
+        </div>
+      </figure>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>

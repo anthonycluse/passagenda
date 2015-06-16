@@ -1,0 +1,22 @@
+<div class="grid-12">
+  <nav class="top-bar">
+    <div class="top-bar-wrapper">
+      <ul class="top-bar-ul">
+        <li class="top-bar-title" class="top-bar-img">
+          <a href="/">
+            <% if( options.logo !== '' ){ %>
+            <img src="/uploads/<%-options.logo%>" alt="<%-options.title%>">
+            <% }else{ %>
+            <img src="/images/LOGO.png" alt="<%-options.title%>">
+            <% } %>
+          </a>
+        </li>
+        <li class="top-bar-divider"></li>
+        <%-partial('link')%>
+        <div class="clear"></div>
+      </ul>
+    </div>
+    <button class="top-bar-toggle"></button>
+  </nav>
+  <div class="top-bar-space"></div>
+</div>

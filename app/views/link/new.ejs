@@ -1,0 +1,130 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Ajout d'un lien</h5></div>
+  <div class="ui-block-content">
+    <form action="/link/create" method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <div class="form-group">
+        <label for="name" class="control-label">Nom</label>
+        <input type="text" id="name" name="link[name]" class="form-control" placeholder="Nom du lien" required>
+      </div>
+      <div class="form-group">
+        <label for="name" class="control-label">Type</label>
+        <select name="cible" id="cible" class="form-control">
+          <% if( pages.length ){ %>
+          <option value="page">Page</option>
+          <% } %>
+          <% if( articles.length ){ %>
+          <option value="article">Article</option>
+          <% } %>
+          <option value="url">URL</option>
+          <% if( pages.length ){ %>
+          <option value="home">Page d'accueil</option>
+          <% } %>
+          <% if( ( pages.length || articles.length ) && links.length ){ %>
+          <option value="sublink">Sous-menu</option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group" id="form-page">
+        <label for="page" class="control-label">Pages</label>
+        <select name="page" id="page" class="form-control">
+          <% pages.forEach(function(page){ %>
+          <option value="/p/<%-page.id%>/<%-page.seo_url%>"><%-page.title%></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="form-group" id="form-article" style="display: none;">
+        <label for="article" class="control-label">Articles</label>
+        <select name="article" id="article" class="form-control">
+          <% articles.forEach(function(article){ %>
+          <option value="/blog/<%-article.id%>/<%-article.seo_url%>"><%-article.title%></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="form-group" id="form-link" style="display: none;">
+        <label for="sublink" class="control-label">Lien parent</label>
+        <select id="sublink" class="form-control">
+          <% links.forEach(function(link){ %>
+          <option value="<%-link.id%>"><%-link.name%></option>
+          <% }); %>
+        </select>
+      </div>
+
+      <div class="form-group" id="form-url">
+        <label for="url" class="control-label">URL</label>
+        <input type="text" id="url" placeholder="URL de votre lien" class="form-control" name="link[pointer]" required>
+      </div>
+
+      <input type="hidden" name="link[type]" id="type" value="1">
+      <input type="hidden" name="link[position]" value="<%-position%>">
+      <input type="submit" class="btn btn-default" value="Enregistrer">
+      <div class="clear"></div>
+    </form>
+    <script>
+      var inputSubLink = '<input type="hidden" name="link[LinkId]" id="linkid" value="">';
+      var cible = $('#cible').val();
+      function refreshForm(cible){
+        switch(cible){
+          case 'page':
+            $('#linkid').remove();
+            $('#form-article').hide();
+            $('#form-page').show();
+            $('#url').val($('#page').val());
+            $('#type').val('1');
+            $('#linkid').val('');
+            break;
+          case 'article':
+            $('#linkid').remove();
+            $('#form-page').hide();
+            $('#form-article').show();
+            $('#url').val($('#article').val());
+            $('#type').val('1');
+            $('#linkid').val('');
+            break;
+          case 'url':
+            $('#linkid').remove();
+            $('#form-article').hide();
+            $('#form-page').hide();
+            $('#url').val('');
+            $('#linkid').val('');
+            $('#type').val('1');
+            break;
+          case 'home':
+            $('#linkid').remove();
+            $('#form-article').hide();
+            $('#form-page').show();
+            $('#url').val($('#page').val());
+            $('#linkid').val('');
+            $('#type').val('0');
+            break;
+          case 'sublink':
+            $('form').prepend(inputSubLink);
+            $('#form-article').hide();
+            $('#form-page').show();
+            $('#form-link').show();
+            $('#url').val($('#page').val());
+            $('#linkid').val($('#sublink').val());
+            $('#type').val('2');
+            break;
+        }
+      }
+      $('#url').val($('#page').val());
+      $('#cible').change( function(){
+        var cible = $(this).val();
+        refreshForm(cible);
+      });
+      $('#page').change( function(){
+        $('#url').val($(this).val());
+      });
+      $('#article').change( function(){
+        $('#url').val($(this).val());
+      });
+      $('#sublink').change( function(){
+        $('#linkid').val($(this).val());
+      });
+      refreshForm(cible);
+    </script>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<% layout('../_layout') %>
+
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des catégories d'événements</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Couleur</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if( categories.length ){ %>
+          <% categories.forEach(function(category){ %>
+          <tr>
+            <td><%-category.name%></td>
+            <td><span style="background-color: <%-category.color%>; height: 10px; display: block;"></span></td>
+            <td>
+              <a href="/appointment/category/delete/<%- category.id %>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+          <%}else{ %>
+          <tr><td><p class="danger" style="text-align: left;">Aucunes catégories.</p></td><td></td><td></td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<% layout('../layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des articles</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Contenue</th>
+            <th>En ligne</th>
+            <th>Date de création</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% articles.forEach(function(article){ %>
+          <tr>
+            <td><%- article.title %></td>
+            <td><%- article.content %></td>
+            <td>
+              <% if(article.state === true){ %>
+              <p class="success">En ligne</p>
+              <% }else{ %>
+              <p class="danger">Hors-ligne</p>
+              <% } %>
+            </td>
+            <td><%-article.date.fromNow()%></td>
+            <td>
+              <a href="/article/show/<%- article.id %>">Voir</a> |
+              <a href="/article/edit/<%- article.id %>">Modifier</a> |
+              <a href="/article/delete/<%- article.id %>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<% layout('layout'); %>
+
+<div class="sub-header">
+  <div class="container">
+    <div class="grid-12"><h2><%-article.title%></h2></div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div class="blog">
+  <div class="container">
+    <div class="grid-12">
+      <div class="rw">
+        <div class="space20"></div>
+        <ol class="breadcrumbs">
+          <li><a href="/article">Mes articles</a></li>
+          <li><a href="/article/show/<%-article.id%>"><%-article.title%></a></li>
+          <div class="clear"></div>
+        </ol>
+        <div class="article">
+          <h3><%-article.title%></h3>
+          <i>Posté le
+            <%-( article.createdAt.getDate() > 9 ) ? article.createdAt.getDate() : '0'+article.createdAt.getDate()%>/<%-( article.createdAt.getMonth() + 1 > 9 ) ? article.createdAt.getMonth() + 1 : '0'+article.createdAt.getMonth() + 1%>/<%-article.createdAt.getFullYear()%>
+          </i>
+          <p>
+            <%-article.content%>
+          </p>
+          <% if( article.seo_share === true ){ %>
+          <div class="seo-share">
+            <a href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=<%-megaURL%>','name','width=600,height=400')">Partager sur Facebook</a>
+            <a href="#" onclick="window.open('https://twitter.com/home?status=<%-megaURL%>','name','width=600,height=400')">Partager sur Twitter</a>
+            <a href="#" onclick="window.open('https://plus.google.com/share?url=<%-megaURL%>','name','width=600,height=400')">Partager sur Google+</a>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="space20"></div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression de l'article "<%-article.title%>"</h5></div>
+  <div class="ui-block-content">
+    <p>
+      <strong>Titre :</strong> <%- article.title %>
+    </p>
+    <p>
+      <strong>Contenue :</strong> <%- article.content %>
+    </p>
+    <p>
+      <strong>Etat :</strong>
+      <% if(article.state === true){ %>
+      En ligne
+      <% }else{ %>
+      Hors-ligne
+      <% } %>
+    </p>
+    <form action="/article/destroy" method="post" class="form">
+      <input type="hidden" name="id" value="<%- article.id %>">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <input type="submit" class="btn" value="Oui le supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

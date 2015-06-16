@@ -1,0 +1,18 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression du lien "<%-link.name%>"</h5></div>
+  <div class="ui-block-content">
+    <p>
+      <strong>Nom :</strong> <%- link.name %>
+    </p>
+    <p>
+      <strong>Cible :</strong> <%- link.pointer %>
+    </p>
+    <form action="/link/destroy" method="post" class="form">
+      <input type="hidden" name="id" value="<%-link.id%>">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <input type="submit" class="btn" value="Oui le supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

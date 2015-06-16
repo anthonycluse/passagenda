@@ -1,0 +1,51 @@
+<% layout('../_layout'); %>
+<div class="panel">
+  <div class="ui-tool">
+    <ul>
+        <li><a href="/page/new">Ajouter une page</a></li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+</div>
+<div class="space10"></div>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des pages</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>En ligne</th>
+            <th>Date de création</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if( pages.length ){ %>
+          <% pages.forEach(function(page){ %>
+          <tr>
+            <td><%- page.title %></td>
+            <td>
+              <% if(page.state === true){ %>
+              <p class="success">En ligne</p>
+              <% }else{ %>
+              <p class="danger">Hors-ligne</p>
+              <% } %>
+            </td>
+            <td><%-page.date.fromNow()%></td>
+            <td>
+              <a href="/p/<%-page.id%>/<%-page.seo_url%>">Aperçus</a> |
+              <a href="/page/edit/<%- page.id %>">Modifier</a> |
+              <a href="/page/delete/<%- page.id %>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+          <% }else{ %>
+          <tr><td><p class="danger" style="text-align: left;">Aucunes pages.</p></td><td></td><td></td><td></td><td></td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

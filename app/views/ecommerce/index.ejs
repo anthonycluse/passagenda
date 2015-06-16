@@ -1,0 +1,73 @@
+<% layout('../_layout'); %>
+<div class="grid-6 alpha">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+        <li><a href="/eccustomer/_index"><span class="icon icon-user"></span>Liste des clients</a></li>
+        <li><a href="/ecorder/_index"><span class="icon icon-money"></span>Liste des commandes</a></li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+  <div class="space10"></div>
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des dernier clients</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th>E-mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% customers.forEach(function(customer){ %>
+            <tr>
+              <td><%-customer.firstname%></td>
+              <td><%-customer.lastname%></td>
+              <td><%-customer.email%></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+        <li><a href="/ecproduct/_index"><span class="icon icon-book"></span>Liste des produits</a></li>
+        <li><a href="/eccategory/_index"><span class="icon icon-category"></span>Liste des catégories</a></li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+  <div class="space10"></div>
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des derniers produits</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Référence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(function(product){ %>
+            <tr>
+              <td><%-product.name%></td>
+              <td><%-product.reference%></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

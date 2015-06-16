@@ -1,0 +1,15 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression du produit "<%-product.name%>"</h5></div>
+  <div class="ui-block-content">
+    <p>
+      <strong>Référence :</strong> <%- product.reference %>
+    </p>
+    <form action="/ecproduct/destroy" method="post" class="form">
+      <input type="hidden" name="id" value="<%-product.id%>">
+      <input type="hidden" name="_csrf" value="<%-csrfToken%>">
+      <input type="submit" class="btn" value="Oui le supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

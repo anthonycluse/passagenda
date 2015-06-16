@@ -1,0 +1,26 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression de la page "<%-page.title%>"</h5></div>
+  <div class="ui-block-content">
+    <p>
+      <strong>Titre :</strong> <%- page.title %>
+    </p>
+    <p>
+      <strong>Contenue :</strong> <%- page.content %>
+    </p>
+    <p>
+      <strong>Etat :</strong>
+      <% if(page.state === true){ %>
+      En ligne
+      <% }else{ %>
+      Hors-ligne
+      <% } %>
+    </p>
+    <form action="/page/destroy" method="post" class="form">
+      <input type="hidden" name="id" value="<%- page.id %>">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <input type="submit" class="btn" value="Oui la supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

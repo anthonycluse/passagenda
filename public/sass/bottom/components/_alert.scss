@@ -1,0 +1,25 @@
+/*
+ * Alert
+ * @Author Anthony Cluse
+*/
+div.alert{
+	padding: $alert-padding;
+	cursor: $alert-cursor;
+}
+
+div.alert-success{
+	@include alert($green);
+}
+
+div.alert-info{
+	@include alert($blue);
+}
+
+div.alert-warning{
+	@include alert($yellow);
+}
+
+div.alert-danger{
+	@include alert($red);
+}
+

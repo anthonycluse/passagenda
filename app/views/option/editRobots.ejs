@@ -1,0 +1,15 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Modification du "robots.txt"</h5></div>
+  <div class="ui-block-content">
+    <form action="/option/robots/update" class="form" method="post">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <div class="form-group">
+        <label for="robots">Robots.txt</label>
+        <textarea style="height: 200px;" class="form-control" id="robots" name="robots"><%-robots%></textarea>
+      </div>
+      <input type="submit" value="Enregistrer" class="btn">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

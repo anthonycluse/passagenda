@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+var Server = require('../Application');
+var db = require('../db/DbContext');
+
+if(process.argv[2] === '-d'){
+	db.drop();
+}
+else{
+	db.sync().success(function () {
+		console.log('database synchronized');
+		var server = new Server();
+	});
+}

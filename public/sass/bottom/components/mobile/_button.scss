@@ -1,0 +1,8 @@
+@media screen and (max-width : $container-width){
+
+	.btn{
+		float: none;
+		width: 100%;
+		@include box-sizing(border-box);
+	}
+}

@@ -1,0 +1,42 @@
+<% layout('../_layout'); %>
+<div class="panel">
+  <div class="ui-tool">
+    <ul>
+        <li><a href="/file/new">Ajouter un fichier</a></li>
+        <li><a href="/option/file/edit">Mot de passe</a></li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+</div>
+<div class="space10"></div>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des fichiers</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Fichier</th>
+            <th>Lien</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% files.forEach(function(file){ %>
+          <tr>
+            <td><%-file.title%></td>
+            <td><%- file.file %></td>
+            <td><a href="/uploads/<%-file.file%>">Cliquez ici</a></td>
+            <td><%-file.date.fromNow()%></td>
+            <td>
+              <a href="/file/delete/<%-file.id%>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

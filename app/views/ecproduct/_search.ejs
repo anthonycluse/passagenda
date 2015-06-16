@@ -1,0 +1,133 @@
+<% layout('../_layout'); %>
+<div class="grid-6 alpha">
+  <div class="panel">
+    <div class="ui-tool">
+      <form action="/ecproduct/search" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <div class="form-group">
+          <label for="search" class="control-label">Rechercher un produit</label>
+          <input type="text" id="search" class="form-control" placeholder="Votre recherche" name="search" required="required">
+          <p class="help-block">Recherche par référence, nom, description ou catégorie</p>
+        </div>
+        <input type="submit" class="btn" value="Rechercher">
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+        <li><a href="/ecproduct/_index">Liste des produits</a></li>
+        <li><a href="/ecproduct/new">Ajouter un produit</a></li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="space10"></div>
+<div class="grid-12">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des produits</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Image du produit</th>
+              <th>Nom du produit</th>
+              <th>Référence du produit</th>
+              <th>Catégorie</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if( products.length ){ %>
+            <% products.forEach(function(product){ %>
+            <tr>
+              <td><img src="/uploads/<%-product.thumbnail%>" style="height: 25px;"></td>
+              <td><%-product.name%></td>
+              <td><%-product.reference%></td>
+              <td><%=product.EcCategory.name%></td>
+              <td>
+                <a href="/ecproduct/edit/<%-product.id%>">Modifier</a> |
+                <a href="/ecproduct/delete/<%-product.id%>">Supprimer</a> |
+                <a href="/ecproduct/show/<%-product.id%>">Voir le produit</a>
+              </td>
+            </tr>
+            <% }); %>
+            <% }else{ %>
+            <tr><td><p class="danger" style="text-align: left;">Aucuns produits.</p><td></td><td></td><td></td><td></td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+      <% if( allProducts.length > options.numberOfLines ){ %>
+      <div class="space20"></div>
+      <ul class="pagination">
+        <!-- On stocke l'id de la page -->
+        <% id = parseInt(id); %>
+        <!-- Si l'id est plus grand que 1 alors la flèche vers la gauche possède un lien vers la page précédente, sinon "#" -->
+        <% if( id > 1 ){ %>
+          <% var prevId = id - 1; %>
+          <li class="is-first"><a href="/ecproduct/_search/page/<%-prevId%>/<%=search%>">&laquo;</a></li>
+        <% }else{ %>
+          <li class="is-first"><a href="#">&laquo;</a></li>
+        <% } %>
+        <!-- On stocke le nombre de page -->
+        <% var numberOfPages = Math.ceil(allProducts.length/parseInt(options.numberOfLines)); %>
+        <!-- si le nombre de page dépasse les 20, on va créer un algo permettant d'afficher seuelement les pages nécessaires-->
+        <% if (numberOfPages >= 20 ) { %>
+          <!-- deux cas possible, on dépasse la moitier du nombre de page-->
+          <!-- ou on est en dessous la moitier-->
+          <% if (id <= numberOfPages/2 ) { %>
+            <% for (var i = id-2; i < id+3; i++) { %>
+              <% if (i >= 1) {%>
+                <% if (i === id) { %>
+                  <li class="is-current"><a href="/ecproduct/_search/page/<%-i%>/<%=search%>"><%-i%></a></li>
+                <% } else { %>
+                  <li><a href="/ecproduct/_search/page/<%-i%>/<%=search%>"><%-i%></a></li>
+                <% } %>
+              <% } %>
+            <% } %>
+            <li><a href="#">...</a></li>
+            <li><a href="/ecproduct/_search/page/<%-numberOfPages%>/<%=search%>"><%-numberOfPages%></a></li>
+          <% } else { %>
+            <li><a href="/ecproduct/_search/page/1/<%=search%>">1</a></li>
+            <li><a href="#">...</a></li>
+            <% for (var i = id-2; i < id+3; i++) { %>
+              <% if (i <= numberOfPages) {%>
+                <% if (i === id) { %>
+                  <li class="is-current"><a href="/ecproduct/_search/page/<%-i%>/<%=search%>"><%-i%></a></li>
+                <% } else { %>
+                  <li><a href="/ecproduct/_search/page/<%-i%>/<%=search%>"><%-i%></a></li>
+                <% } %>
+              <% } %>
+            <% } %>
+          <% } %>
+        <!-- si on ne dépasse pas les 20 pages alors on va afficher les 20 - 1  pages sans en cacher une -->
+        <% } else { %>
+          <% for( var i = 0; i < numberOfPages; i++ ){%>
+            <% var page = i+1; %>
+            <% if( id === page ){ %>
+              <li class="is-current"><a href="/ecproduct/_search/page/<%-page%>/<%=search%>"><%-page%></a></li>
+            <% }else{ %>
+              <li><a href="/ecproduct/_search/page/<%-page%>/<%=search%>"><%-page%></a></li>
+            <% } %>
+          <% } %>
+        <% } %>
+        <!-- Si l'id est plus petit que le nombre de page alors la flèche vers la droite possède un lien vers la page précédente, sinon "#" -->
+        <% if( id < numberOfPages ){ %>
+          <% var nextId = id + 1; %>
+          <li class="is-last"><a href="/ecproduct/_search/page/<%-nextId%>/<%=search%>">&raquo;</a></li>
+        <% }else{ %>
+          <li class="is-last"><a href="#">&raquo;</a></li>
+        <% } %>
+      </ul>
+      <% } %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

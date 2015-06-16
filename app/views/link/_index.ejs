@@ -1,0 +1,130 @@
+<% layout('../_layout'); %>
+<div class="panel">
+  <div class="ui-tool">
+    <ul>
+        <li><a href="/link/new">Ajouter un lien</a></li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+</div>
+<div class="space10"></div>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des liens</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Cible</th>
+            <th>Type</th>
+            <th>Position</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if( links.length ){ %>
+          <% links.forEach(function(link){ %>
+          <% if( link.type === 0 ){ %>
+          <tr style="color: #14527e;">
+            <td style="text-align: left;">- <%- link.name %></td>
+            <% }else if( link.type === 1 ){ %>
+          <tr draggable="true" data-id="<%-link.id%>">
+            <td style="text-align: left; cursor: move;">- <%- link.name %></td>
+            <% } %>
+            <td><%-link.pointer%></td>
+            <td>
+              <% if(link.type === 0){ %>
+              <p>Home</p>
+              <% }else if( link.type === 1 ){ %>
+              <p>Menu</p>
+              <% }else{ %>
+              <p>Sous-menu</p>
+              <% } %>
+            </td>
+            <td>
+              <% if( link.type === 0){ %>
+              Automatique
+              <% }else{%>
+              <%-link.position%>
+              <% } %>
+            </td>
+            <td>
+              <a href="/link/delete/<%-link.id%>">Supprimer</a>
+            </td>
+          </tr>
+
+          <% if(link.Links.length ){ %>
+          <% link.Links.forEach(function(link){ %>
+          <tr style="color: gray;">
+            <td style="text-align: left; padding: 0 0 0 50px;">> <%- link.name %></td>
+            <td><%-link.pointer%></td>
+            <td>
+              <% if(link.type === 0){ %>
+              <p>Home</p>
+              <% }else if( link.type === 1 ){ %>
+              <p>Menu</p>
+              <% }else{ %>
+              <p>Sous-menu</p>
+              <% } %>
+            </td>
+            <td>
+              <% if( link.type === 0){ %>
+              Automatique
+              <% }else{%>
+              <%-link.position%>
+              <% } %>
+            </td>
+            <td>
+              <a href="/link/delete/<%-link.id%>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+          <% } %>
+
+          <% }); %>
+          <% }else{ %>
+          <tr><td><p class="danger" style="text-align: left;">Aucuns liens.</p></td><td></td><td></td><td></td><td></td></tr>
+          <% } %>
+        </tbody>
+      </table>
+      <script>
+        $('tbody tr[draggable=true]').on({
+          dragstart: function(e){
+            $this = $(this);
+            i = $this.index();
+            position = parseInt($this.children().eq(3).text());
+            dataId = $this.attr('data-id');
+            e.originalEvent.dataTransfer.setData('text/html', $this.html());
+          },
+          dragenter: function(e) {
+            e.preventDefault();
+          },
+          dragleave: function() {},
+          dragover: function(e) {
+            e.preventDefault();
+          },
+          drop: function(e) {
+            if (i !== $(this).index()) {
+              var data = e.originalEvent.dataTransfer.getData('text/html');
+              var newPosition = parseInt($(this).children().eq(3).text());
+              $this.html($(this).html());
+              $(this).html(data);
+              $(this).children().eq(3).text(newPosition);
+              $this.children().eq(3).text(position);
+
+              $.ajax({
+                type: 'GET',
+                url: '/link/updatePosition',
+                data: "id1="+dataId+"&position1="+newPosition+"&id2="+$(this).attr('data-id')+"&position2="+position,
+                success: function(data){
+                  window.location.href = data;
+                }
+              });
+            }
+          }
+        });
+      </script>
+    </div>
+  </div>
+</div>

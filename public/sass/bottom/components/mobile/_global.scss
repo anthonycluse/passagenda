@@ -1,0 +1,44 @@
+@media screen and (max-width : $container-width){
+
+  body{
+
+    // TODO mettre dans bottom cette class elle permet de cacher en responsive le plugin social-likes en jquery
+    .social-likes{
+      display: none;
+    }
+
+    .container{
+      width: 100%;
+      margin: 0;
+
+      @for $i from 1 through $total-columns{
+        div.grid-#{$i}{
+          float: left;
+          margin: 0;
+          width: 100%;
+        }
+      }
+    }
+
+    .ui-container{
+      margin-left: 0;
+      width: calc(100% - 20px);
+
+      @for $i from 1 through $total-columns{
+        div.grid-#{$i}{
+          float: left;
+          margin: 0;
+          width: 100%;
+        }
+      }
+    }
+
+    .rw{
+      padding: 0 10px;
+    }
+
+    .is-hidden-on-mobile{
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+/*
+ * Custom icons
+ * @Author Anthony Cluse
+*/
+.icon{
+    width: 16px;
+    height: 16px;
+    //float: left;
+    //margin: 2px 10px 0 0;
+    display: block;
+    margin: 0 auto 10px auto;
+    display: block;
+}
+
+.icon-article{
+    @include backgroundImage('#{$icon-path}ARTICLE', png, 16px, 16px);
+}
+
+.icon-media{
+    @include backgroundImage('#{$icon-path}MEDIA', png, 16px, 16px);
+}
+
+.icon-add{
+    @include backgroundImage('#{$icon-path}ADD', png, 16px, 16px);
+}
+
+.icon-edit{
+    @include backgroundImage('#{$icon-path}EDIT', png, 16px, 16px);
+}
+
+.icon-user{
+    @include backgroundImage('#{$icon-path}USER', png, 16px, 16px);
+}
+
+.icon-add-user{
+    @include backgroundImage('#{$icon-path}ADD_USER', png, 16px, 16px);
+}
+
+.icon-book{
+    @include backgroundImage('#{$icon-path}BOOK', png, 16px, 16px);
+}
+
+.icon-event{
+    @include backgroundImage('#{$icon-path}EVENT', png, 16px, 16px);
+}
+
+.icon-login{
+    @include backgroundImage('#{$icon-path}LOGIN', png, 16px, 16px);
+}
+
+.icon-logout{
+    @include backgroundImage('#{$icon-path}LOGOUT', png, 16px, 16px);
+}
+
+.icon-option{
+    @include backgroundImage('#{$icon-path}OPTION', png, 16px, 16px);
+}
+
+.icon-category{
+    @include backgroundImage('#{$icon-path}CATEGORY', png, 16px, 16px);
+}
+
+.icon-map{
+    @include backgroundImage('#{$icon-path}MAP', png, 16px, 16px);
+}
+
+.icon-pen{
+    @include backgroundImage('#{$icon-path}PEN', png, 16px, 16px);
+}
+
+.icon-google{
+    @include backgroundImage('#{$icon-path}GOOGLE', png, 16px, 16px);
+}
+
+.icon-link{
+    @include backgroundImage('#{$icon-path}LINK', png, 16px, 16px);
+}
+
+.icon-color{
+    @include backgroundImage('#{$icon-path}COLOR', png, 16px, 16px);
+}
+
+.icon-file{
+    @include backgroundImage('#{$icon-path}FILE', png, 16px, 16px);
+}
+
+.icon-network{
+    @include backgroundImage('#{$icon-path}NETWORK', png, 16px, 16px);
+}
+
+.icon-chrome{
+    @include backgroundImage('#{$icon-path}CHROME', png, 16px, 16px);
+}
+
+.icon-ecommerce{
+    @include backgroundImage('#{$icon-path}ECOMMERCE', png, 16px, 16px);
+}
+
+.icon-money{
+    @include backgroundImage('#{$icon-path}MONEY', png, 16px, 16px);
+}

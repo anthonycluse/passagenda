@@ -1,0 +1,134 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Gestion des modules</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Etat</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Blog</td>
+            <td>
+              <% if(options.modules.blog.state === true){ %>
+              <p class="success">En ligne</p>
+              <% }else{ %>
+              <p class="danger">Hors-ligne</p>
+              <% } %>
+            </td>
+            <td>
+              <% if(options.modules.blog.state === true){ %>
+              <a href="/option/module/update/blog/0">Désactiver</a>
+              <% }else{ %>
+              <a href="/option/module/update/blog/1">Activer</a>
+              <% } %>
+               | 
+              <a href="/option/module/edit/blog">Modifier</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Portfolio</td>
+            <td>
+              <% if(options.modules.portfolio.state === true){ %>
+              <p class="success">En ligne</p>
+              <% }else{ %>
+              <p class="danger">Hors-ligne</p>
+              <% } %>
+            </td>
+            <td>
+              <% if(options.modules.portfolio.state === true){ %>
+              <a href="/option/module/update/portfolio/0">Désactiver</a>
+              <% }else{ %>
+              <a href="/option/module/update/portfolio/1">Activer</a>
+              <% } %>
+               | 
+              <a href="/option/module/edit/portfolio">Modifier</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Contact</td>
+            <td>
+              <% if(options.modules.contact.state === true){ %>
+              <p class="success">En ligne</p>
+              <% }else{ %>
+              <p class="danger">Hors-ligne</p>
+              <% } %>
+            </td>
+            <td>
+              <% if(options.modules.contact.state === true){ %>
+              <a href="/option/module/update/contact/0">Désactiver</a>
+              <% }else{ %>
+              <a href="/option/module/update/contact/1">Activer</a>
+              <% } %>
+               | 
+              <a href="/option/module/edit/contact">Modifier</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Téléchargement</td>
+            <td>
+              <% if(options.modules.file.state === true){ %>
+              <p class="success">En ligne</p>
+              <% }else{ %>
+              <p class="danger">Hors-ligne</p>
+              <% } %>
+            </td>
+            <td>
+              <% if(options.modules.file.state === true){ %>
+              <a href="/option/module/update/file/0">Désactiver</a>
+              <% }else{ %>
+              <a href="/option/module/update/file/1">Activer</a>
+              <% } %>
+               | 
+              <a href="/option/module/edit/file">Modifier</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Calendrier</td>
+            <td>
+              <% if(options.modules.event.state === true){ %>
+              <p class="success">En ligne</p>
+              <% }else{ %>
+              <p class="danger">Hors-ligne</p>
+              <% } %>
+            </td>
+            <td>
+              <% if(options.modules.event.state === true){ %>
+              <a href="/option/module/update/event/0">Désactiver</a>
+              <% }else{ %>
+              <a href="/option/module/update/event/1">Activer</a>
+              <% } %>
+               | 
+              <a href="/option/module/edit/event">Modifier</a>
+            </td>
+          </tr>
+          <tr>
+            <td>E-commerce</td>
+            <td>
+              <% if(options.modules.ecommerce.state === true){ %>
+              <p class="success">En ligne</p>
+              <% }else{ %>
+              <p class="danger">Hors-ligne</p>
+              <% } %>
+            </td>
+            <td>
+              <% if(options.modules.ecommerce.state === true){ %>
+              <a href="/option/module/update/ecommerce/0">Désactiver</a>
+              <% }else{ %>
+              <a href="/option/module/update/ecommerce/1">Activer</a>
+              <% } %>
+               | 
+              <a href="/option/module/edit/ecommerce">Modifier</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

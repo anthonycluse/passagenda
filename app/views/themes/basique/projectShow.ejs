@@ -1,0 +1,52 @@
+<% layout('layout'); %>
+
+<div class="sub-header">
+  <div class="container">
+    <div class="grid-12"><h2><%-project.title%></h2></div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div class="portfolio">
+  <div class="container">
+    <div class="grid-12">
+      <div class="rw">
+        <div class="space20"></div>
+        <ol class="breadcrumbs">
+          <li><a href="/project">Mes projets</a></li>
+          <li><a href="/project/show/<%-project.id%>"><%-project.title%></a></li>
+          <div class="clear"></div>
+        </ol>
+      </div>
+      <div class="space20"></div>
+      <div class="grid-8 alpha">
+        <div class="rw">
+          <div class="project">
+            <div class="flexslider">
+              <ul class="slides">
+                <% project.ProjectPhotos.forEach(function(photo){ %>
+                <li><img src="/uploads/<%-photo.file%>" /></li>
+                <% }); %>
+              </ul>
+            </div>
+            <script type="text/javascript" charset="utf-8">
+              $(window).load(function() {
+                $('.flexslider').flexslider();
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+      <div class="grid-4 omega">
+        <div class="rw">
+          <p><b>Description</b> : <%-project.description%></p>
+          <p><b>Auteur</b> : <%-project.author%></p>
+          <p><b>Lien</b> : <a href="<%-project.link%>" target="_blank">Cliquez ici</a></p>
+          <p><b>Catégorie</b> : <%-project.ProjectCategory.name%></p>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="space20"></div>
+  </div>
+</div>

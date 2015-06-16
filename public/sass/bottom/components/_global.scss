@@ -1,0 +1,94 @@
+html{
+  height: 100%;
+}
+
+body{
+  font-family: 'Open Sans', sans-serif;
+  font-size: $font-size-base;
+  font-weight: 400;
+  height: 100%;
+  
+  .ui-wrapper{
+    position: relative;
+    height: auto;
+    min-height: calc(100% - 61px);
+    background-color: $grayBg;
+    z-index: 1;
+
+    .clear{ clear: both; }
+  }
+  
+  // to do changer les settings dans params
+  .ui-container{
+    padding: 10px;
+    width: calc(100% - 140px);
+    float: left;
+
+    @include set-ui-grids();
+
+    hr{
+      height: $hr-height;
+      background-color: $hr-bg;
+      margin: $hr-margin;
+      border: 0;
+    }
+
+    // TODO enlever les div avant les propriétés dans bottom
+
+    .space10{ height: 10px; }
+    .space20{ height: 20px; }
+    .space30{ height: 30px; }
+    .space40{ height: 40px; }
+    .space50{ height: 50px; }
+
+    .clear{ clear: both; }
+
+    .floatLeft{ float: left; }
+
+    .floatRight{ float: right; }
+
+    .radius{ @include border-radius(5px); }
+
+    .textAlignLeft{ text-align: left; }
+    .textAlignCenter{ text-align: center; }
+    .textAlignRight{ text-align: right; }
+  }
+
+  .container{
+    width: $container-width;
+    margin: 0 auto;
+
+    @include set-grids();
+
+    hr{
+      height: $hr-height;
+      background-color: $hr-bg;
+      margin: $hr-margin;
+      border: 0;
+    }
+
+    .space10{ height: 10px; }
+    .space20{ height: 20px; }
+    .space30{ height: 30px; }
+    .space40{ height: 40px; }
+    .space50{ height: 50px; }
+
+    .clear{ clear: both; }
+
+    .floatLeft{ float: left; }
+
+    .floatRight{ float: right; }
+
+    .radius{ @include border-radius(5px); }
+
+    .textAlignLeft{ text-align: left; }
+    .textAlignCenter{ text-align: center; }
+    .textAlignRight{ text-align: right; }
+
+    div.page404{
+      width: 500px; height: 500px;
+      margin: 0 auto;
+      @include backgroundImage('icons/404', png, 500px, 500px);
+    }
+  }
+}

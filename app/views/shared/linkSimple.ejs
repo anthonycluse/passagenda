@@ -1,0 +1,30 @@
+<% links.forEach(function(link){ %>
+<% if(link.type === 0) { %>
+<li><a href="/"><%-link.name%></a></li>
+<li class="top-bar-divider"></li>
+<% } else { %>
+<li><a href="<%-link.pointer%>"><%-link.name%></a></li>
+<li class="top-bar-divider"></li>
+<% } %>
+<% }); %>
+
+
+<% if (options.modules.portfolio.state === true && options.pack === 'avantage') { %>
+<li><a href="/project">Réalisations</a></li>
+<li class="top-bar-divider"></li>
+<% } %>
+
+<% if (options.modules.blog.state === true && options.pack === 'avantage') { %>
+<li><a href="/blog">Actualités</a></li>
+<li class="top-bar-divider"></li>
+<% } %>
+
+<% if (options.modules.file.state === true && options.pack === 'avantage') { %>
+<li><a href="/telechargement">Téléchargement</a></li>
+<li class="top-bar-divider"></li>
+<% } %>
+
+<% if (options.modules.contact.state === true) { %>
+<li><a href="/contact">Contact</a></li>
+<li class="top-bar-divider"></li>
+<% } %>

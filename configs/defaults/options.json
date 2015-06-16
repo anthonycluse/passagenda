@@ -1,0 +1,53 @@
+{
+    "pack": "",
+    "mode": "1",
+    "title": "",
+    "lat": "",
+    "lng": "",
+    "zoom": "12",
+    "address": "",
+    "cp": "",
+    "city": "",
+    "description": "",
+    "keywords": "",
+    "modules": {
+        "blog": {
+            "state": false,
+            "thumbImgWidth": "",
+            "thumbImgHeight": "",
+            "title": ""
+        },
+        "portfolio": {
+            "state": false,
+            "imgWidth": "",
+            "imgHeight": "",
+            "title": ""
+        },
+        "contact": {
+            "state": true,
+            "title": ""
+        },
+        "file": {
+            "state": false,
+            "password": "",
+            "title": ""
+        },
+        "event": {
+            "state": false
+        },
+        "ecommerce": {
+            "state": false
+        }
+    },
+    "complementary_address": "",
+    "email": "",
+    "phone": "",
+    "idga": "",
+    "theme": "basique",
+    "firstname": "",
+    "lastname": "",
+    "compagny": "",
+    "textContact": "",
+    "logo": "",
+    "numberOfLines": "10"
+}

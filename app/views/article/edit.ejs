@@ -1,0 +1,72 @@
+<% layout('../_layout'); %>
+<form action="/article/update" method="POST" class="form">
+  <div class="grid-12" ng-controller="SeoArticle">
+    <div class="grid-6 alpha">
+      <div class="ui-block">
+        <div class="ui-block-title"><h5>Modification de l'article "<%-article.title%>"</h5></div>
+        <div class="ui-block-content">
+          <input type="hidden" name="article[id]" value="<%-article.id%>">
+          <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+          <div class="form-group">
+            <label for="title" class="control-label">Titre</label>
+            <input type="text" id="title" name="article[title]" class="form-control" placeholder="title" value="<%-article.title%>" ng-model="seoTitle">
+          </div>
+          <div class="form-group">
+            <label for="content" class="control-label">Texte</label>
+            <textarea name="article[content]" id="content" class="form-control" cols="30" rows="10"><%-article.content%></textarea>
+          </div>
+          <script>
+            CKEDITOR.replace('content',{
+              filebrowserImageUploadUrl: '/media/ckeditor/create'
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="grid-6 omega">
+      <div class="ui-block">
+        <div class="ui-block-title"><h5>Options de l'article</h5></div>
+        <div class="ui-block-content">
+          <div class="form-group">
+            <label for="seo_title" class="control-label">Balise title</label>
+            <input type="text" id="seo_title" class="form-control" placeholder="Balise title" name="article[seo_title]" required="required" value="<%-article.seo_title%>">
+            <div class="help-block">Soyez explicite, il décris votre page en un maximum conseillé de 15 mots.</div>
+          </div>
+          <div class="form-group">
+            <label for="seo_url" class="control-label">Réécriture de l'url</label>
+            <input type="text" id="seo_url" class="form-control" placeholder="Réécriture de l'url" name="article[seo_url]" required="required" value="<%-article.seo_url%>">
+            <div class="alert-block">Ne doit pas comporter d'espace, de caractères spéciaux ou de chiffres, Ex.: lien-de-ma-page</div>
+          </div>
+          <div class="form-group">
+            <label for="state" class="control-label">En ligne</label>
+            <select name="article[state]" id="state" class="form-control">
+              <% if( article.state === true ){ %>
+              <option value="1">En ligne</option>
+              <option value="0">Hors-ligne</option>
+              <% }else{ %>
+              <option value="0">Hors-ligne</option>
+              <option value="1">En ligne</option>
+              <% } %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="share" class="control-label">Activer le partage</label>
+            <select name="article[seo_share]" id="share" class="form-control">
+              <% if( article.seo_share === true ){ %>
+              <option value="1">Oui</option>
+              <option value="0">Non</option>
+              <% }else{ %>
+              <option value="0">Non</option>
+              <option value="1">Oui</option>
+              <% } %>
+            </select>
+          </div>
+          <input type="submit" class="btn btn-default" value="Enregistrer">
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</form>
+<div class="clear"></div>

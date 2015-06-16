@@ -1,0 +1,13 @@
+@media screen and (max-width : $container-width){
+
+  .side-bar{
+    ul{
+      li{
+        ul{
+          display: block;
+        }
+      }
+    }
+  }
+
+}

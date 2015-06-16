@@ -1,0 +1,23 @@
+<% layout('../_layout'); %>
+
+<div class="alert alert-warning">
+  Si vous supprimez une catégorie, vous supprimez tous les produits appartenant à cette catégorie
+</div>
+
+<div class="clear"></div>
+<div class="space10"></div>
+
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression de la catégorie "<%-category.name%>"</h5></div>
+  <div class="ui-block-content">
+    <p>
+      <strong>Nom :</strong> <%- category.name %>
+    </p>
+    <form action="/eccategory/destroy" method="post" class="form">
+      <input type="hidden" name="id" value="<%- category.id %>">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <input type="submit" class="btn" value="Oui la supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

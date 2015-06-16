@@ -1,0 +1,81 @@
+<% layout('../_layout'); %>
+<div class="panel">
+  <div class="ui-tool">
+    <ul>
+      <li><a href="/article/new">Ajouter un article</a></li>
+      <li><a href="/article/category/_index">Mes catégories</a></li>
+      <li><a href="/article/category/new">Ajouter une catégorie</a></li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+</div>
+<div class="space10"></div>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des articles</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Catégorie</th>
+            <th>En ligne</th>
+            <th>Date de création</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if( articles.length ){ %>
+          <% articles.forEach(function(article){ %>
+          <tr>
+            <td><%- article.title %></td>
+            <td><strong><%-article.ArticleCategory.name%></strong></td>
+            <td>
+              <% if(article.state === true){ %>
+              <p class="success">En ligne</p>
+              <% }else{ %>
+              <p class="danger">Hors-ligne</p>
+              <% } %>
+            </td>
+            <td><%-article.date.fromNow()%></td>
+            <td>
+              <a href="/blog/<%-article.id%>/<%-article.seo_url%>">Aperçu</a> |
+              <a href="/article/edit/<%- article.id %>">Modifier</a> |
+              <a href="/article/delete/<%- article.id %>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+          <% }else{ %>
+          <tr><td><p class="danger" style="text-align: left;">Aucuns articles.</p></td><td></td><td></td><td></td><td></td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <% if( allArticles.length > options.numberOfLines ){ %>
+    <div class="space20"></div>
+    <ul class="pagination">
+      <% id = parseInt(id); %>
+      <% if( id > 1 ){ %>
+      <% var prevId = id - 1; %>
+      <li class="is-first"><a href="/article/_index/page/<%-prevId%>">&laquo;</a></li>
+      <% }else{ %>
+      <li class="is-first"><a href="#">&laquo;</a></li>
+      <% } %>
+      <% for( var i = 0; i < Math.ceil(allArticles.length/parseInt(options.numberOfLines)); i++ ){%>
+      <% var page = i+1; %>
+      <% if( id === page ){ %>
+      <li class="is-current"><a href="/article/_index/page/<%-page%>"><%-page%></a></li>
+      <% }else{ %>
+      <li><a href="/article/_index/page/<%-page%>"><%-page%></a></li>
+      <% } %>
+      <% } %>
+      <% if( id < Math.ceil(allArticles.length/parseInt(options.numberOfLines)) ){ %>
+      <% var nextId = id + 1; %>
+      <li class="is-last"><a href="/article/_index/page/<%-nextId%>">&raquo;</a></li>
+      <% }else{ %>
+      <li class="is-last"><a href="#">&raquo;</a></li>
+      <% } %>
+    </ul>
+    <% } %>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<% layout('../_layout'); %>
+<div class="panel">
+  <div class="ui-tool">
+    <ul>
+      <li><a href="/article/_index">Mes articles</a></li>
+      <li><a href="/article/new">Ajouter un article</a></li>
+      <li><a href="/article/category/new">Ajouter une catégorie</a></li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+</div>
+<div class="space10"></div>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des catégories d'articles</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Articles</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if( categories.length ){ %>
+          <% categories.forEach(function(category){ %>
+          <tr>
+            <td><%- category.name %></td>
+            <td>
+              <% if( category.Articles.length ){ %>
+              <% category.Articles.forEach( function(article){ %>
+              <strong>- <%- article.title %></strong>
+              <% }); %>
+              <% }else{ %>
+              <p class="danger">Aucuns articles.</p>
+              <% } %>
+            </td>
+            <td>
+              <a href="/article/category/edit/<%- category.id %>">Modifier</a> |
+              <a href="/article/category/delete/<%- category.id %>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+          <%}else{ %>
+          <tr><td><p class="danger" style="text-align: left;">Aucunes catégories.</p></td><td></td><td></td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

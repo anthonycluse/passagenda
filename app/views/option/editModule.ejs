@@ -1,0 +1,18 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Gestion des modules</h5></div>
+  <div class="ui-block-content">
+  	<form action="/option/module/update" class="form" method="post">
+  		<input type="hidden" name="_csrf" value="<%- csrfToken %>">
+  		<input type="hidden" name="module" value="<%-module%>">
+  		<input type="hidden" name="action" value="<%-action%>">
+  		<div class="form-group">
+  			<label for="seoTitle">Balise "title" du module</label>
+  			<input type="text" id="seoTitle" name="seoTitle" placeholder="Balise title du module" class="form-control" value="<%=title%>" required>
+  		</div>
+  		<input type="submit" class="btn" value="Enregistrer">
+  		<div class="clear"></div>
+  	</form>
+  </div>
+</div>
+

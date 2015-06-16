@@ -1,0 +1,53 @@
+<% layout('../_layout'); %>
+<!--// ---------- CodeMirror ---------- //-->
+<script src="/javascripts/vendors/codemirror/lib/codemirror.js"></script>
+<link rel="stylesheet" href="/javascripts/vendors/codemirror/lib/codemirror.css">
+<script src="/javascripts/vendors/codemirror/mode/codemirror-compressed.js"></script>
+<link rel="stylesheet" href="/javascripts/vendors/codemirror/theme/monokai.css">
+<script src="/javascripts/vendors/codemirror/addon/selection/active-line.js"></script>
+<script src="/javascripts/vendors/codemirror/addon/edit/matchbrackets.js"></script>
+<link rel="stylesheet" href="/javascripts/vendors/codemirror/addon/display/rulers.css">
+<!--// ---------- /CodeMirror ---------- //-->
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Modification du fichier EJS</h5></div>
+  <div class="ui-block-content">
+    <form action="/option/view/update" class="form" method="post">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <div class="form-group">
+        <label for="ejs">EJS</label>
+        <input type="hidden" name="view" value="<%-view%>">
+        <textarea id="ejs"><%-ejs%></textarea>
+        <textarea class="form-control" name="ejs" style="display: none;"><%-ejs%></textarea>
+      </div>
+      <input type="submit" value="Enregistrer" class="btn">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>
+<script>
+  // Exécute la fonction submit(); lorsque on fait CTRL-S ou CMD-S
+  $(window).bind('keydown', function(event) {
+    if (event.ctrlKey || event.metaKey) {
+      switch (String.fromCharCode(event.which).toLowerCase()) {
+        case 's':
+          event.preventDefault();
+          $('.form').submit();
+          break;
+      }
+    }
+  });
+  // Mise en place du textarea utilisant CodeMirror
+  var editor = CodeMirror.fromTextArea(document.getElementById('ejs'), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    theme: 'default',
+    value: document.getElementById('ejs').value,
+    autofocus: true,
+
+  });
+  // A chaque changement dans le textarea CodeMirror on enregistre dans le textarea qui devra enregistrer le fichier
+  editor.on('change', function(e) {
+    $('textarea[name=ejs]').val(editor.getValue());
+  });
+</script>

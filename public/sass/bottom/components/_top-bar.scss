@@ -1,0 +1,133 @@
+/*
+* Top Bar Fixed
+* @Author Anthony Cluse
+*/
+.top-bar{
+  // TODO mettre le z-index à 9995 pour que les textarea fullscreen marche : avant 999999
+  z-index: 9995;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid $top-bar-divider-bg;
+  position: $top-bar-position;
+  background-color: $top-bar-bg;
+  width: $top-bar-width;
+  margin: $top-bar-margin;
+
+  .top-bar-wrapper{
+    margin: $top-bar-wrapper-margin;
+    width: $container-width;
+
+    .top-bar-ul{
+      padding: 0;
+      margin: 0;
+
+      li{
+        cursor: pointer;
+        float: left;
+        list-style-type: none;
+        position: relative;
+        letter-spacing: $top-bar-li-letter-spacing;
+        padding: $top-bar-li-padding;
+
+        &:hover{
+          background-color: $top-bar-li-hover-bg;
+
+          a{ color: $top-bar-a-hover-color; }
+
+          ul{ display: block; }
+        }
+
+        img{
+          height: 100%;
+          margin: 0;
+        }
+
+        a{
+          display: block;
+          vertical-align: center;
+          height: 20px;
+          line-height: 20px;
+          @include link-colors($top-bar-a-color, $top-bar-a-hover-color);
+        }
+
+        ul{
+          display: none;
+          position: absolute;
+          left: 0;
+          z-index: 9999999;
+          padding: 0;
+          margin: 0;
+          top: $top-bar-li-padding * 2 + 21px;
+
+          li{
+            float: none;
+            min-width: $top-bar-sub-li-min-width;
+            background-color: $top-bar-sub-li-bg;
+            width: 100%;
+          }
+
+          li:last-child{ @include border-radius(none); }
+        }
+      }
+
+      .top-bar-title{
+        float: left;
+        font-weight: $top-bar-title-font-weight;
+
+        &:hover{
+          background-color: $top-bar-title-hover-bg;
+
+          a{ color: $top-bar-title-hover-a-color; }
+        }
+
+        a{ color: $top-bar-title-a-color; }
+      }
+
+      .top-bar-img{
+        padding: 0;
+
+        a{
+          height: ( $top-bar-li-padding * 2 + 20px) - 20;
+          padding: 10px;
+
+          img{ height: ( $top-bar-li-padding * 2 + 20px) - 20; }
+        }
+      }
+
+      .top-bar-divider{
+        width: $top-bar-divider-width;
+        height: $top-bar-li-padding * 2 + 20px;
+        padding: 0;
+        background-color: $top-bar-divider-bg;
+        border-right: 1px solid lighten($top-bar-divider-bg, 10%);
+      }
+
+      .top-bar-active{
+        background-color: $li-active-bg;
+
+        &:hover{ background-color: $li-active-hover-bg; }
+      }
+    }
+  }
+
+  .top-bar-toggle{
+    position: absolute;
+    top: 0; right: 0;
+    border: 0;
+    height: 60px;
+    width: 60px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    display: none;
+    outline: 0;
+    background-position: center;
+    background-size: 40px 40px;
+    @include backgroundImage('TOP_BAR_TOGGLE', 'png', 40px, 40px);
+  }
+}
+
+/*
+* Space For Top Bar Fixed
+* @Author Anthony Cluse
+*/
+.top-bar-space{ height: $top-bar-li-padding * 2 + 21px; }

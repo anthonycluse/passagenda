@@ -1,0 +1,49 @@
+<% layout('../_layout') %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Modification du produit "<%-product.name%>"</h5></div>
+  <div class="ui-block-content">
+    <form action="/ecproduct/update" method="POST" class="form" enctype="multipart/form-data">
+      <input type="hidden" name="_csrf" value="<%-csrfToken%>">
+      <input type="hidden" name="product[id]" value="<%=product.id%>">
+      <div class="form-group">
+        <label for="name" class="control-label">Nom du produit</label>
+        <input type="text" id="name" name="product[name]" class="form-control" placeholder="Nom de la catégorie" requuired="required" autofocus  value="<%=product.name%>">
+      </div>
+      <div class="form-group">
+        <label for="reference" class="control-label">Référence</label>
+        <input type="text" id="reference" name="product[reference]" class="form-control" placeholder="Référence du produit" requuired="required" value="<%=product.reference%>">
+      </div>
+      <div class="form-group">
+        <label for="thumbnail" class="control-label">Image du produit</label>
+        <% if (product.thumbnail) { %>
+          <img src="/uploads/<%=product.thumbnail%>" style="height: 50px; margin: 0 0 10px 0;">
+        <% } %>
+        <input type="hidden" name="oldThumbnail" value="<%=product.thumbnail%>">
+        <input type="file" id="thumbnail" name="thumbnail" class="form-control" placeholder="Référence du produit" requuired="required">
+      </div>
+      <div class="form-group">
+        <label for="description" class="control-label">Description</label>
+        <textarea name="product[description]" id="description" cols="30" rows="10" required="required" class="form-control" placeholder="Description de votre produit"><%=product.description%></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price" class="control-label">Prix</label>
+        <input type="number" id="price" step="any" name="product[price]" class="form-control" placeholder="Prix du produit" requuired="required" value="<%=product.price%>">
+      </div>
+      <div class="form-group">
+        <label for="quantity" class="control-label">Quantité</label>
+        <input type="number" id="quantity" name="product[quantity]" class="form-control" placeholder="Quantité du produit" requuired="required" value="<%=product.quantity%>">
+      </div>
+      <div class="form-group">
+        <label for="category" class="label-control">Catégorie</label>
+        <select name="product[EcCategoryId]" id="category" class="form-control">
+          <option value="<%=product.EcCategory.id%>"><%=product.EcCategory.name%></option>
+          <% categories.forEach(function(category){ %>
+            <option value="<%-category.id%>"><%-category.name%></option>
+          <% }); %>
+        </select>
+      </div>
+      <input type="submit" value="Enregistrer" class="btn">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+/*
+* Table
+* @Author Anthony Cluse
+*/
+table.table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border: $table-border;
+
+  background-color: $white;
+
+  thead{
+    background-color: $table-thead-bg;
+    color: $table-thead-color;
+
+    th{
+      padding: 5px;
+      text-align: center;
+      font-weight: 600;
+
+      a{
+        color: $white;
+        font-style: italic;
+        font-weight: 400;
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover{
+          text-decoration: none;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  tbody{
+
+    tr{
+      background-color: $white;
+
+      td{
+        padding: 5px;
+        text-align: center;
+
+        img{
+          margin: 0 auto;
+        }
+      }
+
+      &:hover{
+        background-color: darken($white, 8%);
+      }
+    }
+
+    tr:nth-child(even){
+      background-color: darken($white, 2%);
+
+      &:hover{
+        background-color: darken($white, 8%);
+      }
+    }
+  }
+}

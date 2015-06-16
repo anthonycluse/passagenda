@@ -1,0 +1,40 @@
+<% layout('layout'); %>
+
+
+<div id="download">
+  <div class="container">
+    <div class="grid-12">
+     <div class="rw">
+      <h2>téléchargements</h2>
+      <a href="/file/logout" class="floatRight">Déconnexion</a>
+      <div class="clear"></div>
+      <hr>
+     </div>
+      <% files.forEach(function(file){ %>
+        <div class="file">
+          <div class="grid-2 alpha">
+           <div class="rw">
+               <img src="/images/themes/adms/DOWNLOAD.png">
+           </div>
+          </div>
+          <div class="grid-8">
+           <div class="rw">
+                           <p class="fileTitle"><%=file.title%></p>
+            <p class="fileDate"><%=formatDate(file.createdAt)%></p>
+           </div>
+          </div>
+          <div class="grid-2 omega">
+           <div class="rw">
+                           <a class="fileLink" href="/uploads/<%-file.file%>">Télécharger</a>
+            <div class="clear"></div>
+           </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <hr>
+      <% }); %>
+
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>

@@ -1,0 +1,251 @@
+
+@import "compass/css3";
+@import "compass/typography";
+@import "compass/css3/transition";
+@import "compass/css3/transform";
+@import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
+@import "compass/css3/user-interface";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
+
+
+$total-columns: 12;
+$column-width: 80px;
+$gutter-width: 10px;
+$container-width: ( $total-columns * $column-width) + ( $total-columns * $gutter-width ) - 10;
+
+$ui-container-width: calc(98% - 200px);
+$ui-container-margin: 0 0 0 200px;
+$ui-container-padding: 0 1%;
+
+$black: #000000;
+$white: #FFFFFF;
+$color: #ff931e;
+$blueColor: #14527e;
+$orangeColor: #ff931e;
+$gray: #343434;
+$red: #d7504b;
+$green: #43AC6A;
+$blue: #2178CF;
+$yellow: #f1c426;
+$mediumDarkColor: darken($color, 5%);
+$ultraDarkColor: darken($color, 25%);
+$grayBg: darken($white, 10%);
+
+$icon-path: 'icons/white/';
+
+$font-size-base: 14px;
+
+$font-size-large: ceil($font-size-base * 1.2);
+$font-size-small: ceil($font-size-base * 0.8);
+
+$font-size-h1: floor($font-size-base * 2.6);
+$font-size-h2: floor($font-size-base * 2.1);
+$font-size-h3: ceil($font-size-base * 1.7);
+$font-size-h4: ceil($font-size-base * 1.2);
+$font-size-h5: $font-size-base;
+$font-size-h6: ceil($font-size-base * 0.8);
+
+$strong-font-weight: 600;
+
+$em-color: $blueColor;
+$em-font-style: italic;
+
+$a-text-decoration: none;
+$a-color: $blueColor;
+$a-hover-color: lighten($blueColor, 10%);
+
+$top-bar-bg: darken($gray, 5%);
+$top-bar-margin: 0;
+$top-bar-width: 100%;
+$top-bar-position: fixed;
+
+$top-bar-wrapper-margin: 0; //0 auto > the menu will be centered
+
+$top-bar-li-padding: 20px;
+$top-bar-li-hover-bg: $gray;
+$top-bar-li-letter-spacing: 2px;
+
+$top-bar-sub-li-min-width: 150px;
+$top-bar-sub-li-bg: darken($gray, 5%);
+
+$top-bar-a-color: $white;
+$top-bar-a-hover-color: $white;
+
+$top-bar-divider-width: 1px;
+$top-bar-divider-bg: darken($gray, 10%);
+
+$top-bar-title-hover-bg: $gray;
+$top-bar-title-hover-a-color: $white;
+$top-bar-title-a-color: $white;
+$top-bar-title-font-weight: 700;
+
+$li-active-bg: darken($color, 5%);
+$li-active-hover-bg: darken($color, 10%);
+
+$panel-pading: 10px;
+$panel-bg: darken($white, 5%);
+$panel-color: lighten($gray, 5%);
+$panel-border-width: 1px;
+$panel-border-style: solid;
+$panel-border-color: darken($white, 15%);
+$panel-box-shadow: darken($white, 5%) 0 2px 0;
+
+// ********** TABLE ********** //
+$table-border-spacing: 2px;
+$table-border: 1px solid darken($white, 10%);
+$table-thead-bg: $blueColor;
+$table-thead-color: $white;
+$table-stripped-tr-odd-bg: lighten($gray, 85%);
+$table-bordered-color: darken($white, 5%);
+$table-hover-tr-hover-bg: lighten($gray, 82%);
+// ********** /TABLE ********** //
+
+// ********** IMG ********** //
+$img-margin: 10px auto;
+$img-border-width: 4px;
+$img-border-style: solid;
+$img-border-color: lighten($black, 10%);
+$img-rounded-border-radius: 5px;
+// ********** /IMG ********** //
+
+// ********** BTN ********** //
+$btn-border: 0;
+$btn-color: $black;
+$btn-margin: 0 10px 0 0;
+$btn-padding: 10px 40px;
+$btn-border-radius: 5px;
+$btn-bg: $white;
+$btn-border-width: 1px;
+$btn-border-style: solid;
+$btn-border-color: darken($white, 10%);
+$btn-hover-bg: $blueColor;
+$btn-hover-color: $white;
+// ********** /BTN ********** //
+
+// ********** ALERT ********** //
+$alert-padding: 20px;
+$alert-cursor: pointer;
+$alert-box-shadow: lighten($gray, 85%) 0 2px 0;
+// ********** /ALERT ********** //
+
+// ********** HR ********** //
+$hr-height: 2px;
+$hr-bg: darken($white, 5%);
+$hr-margin: 10px 0;
+// ********** /HR **********//
+
+// ********** FORM ********** //
+$form-margin: 0;
+$form-group-margin: 0 0 25px 0;
+$form-group-label-margin: 0 0 10px 0;
+$form-group-label-font-weight: 700;
+$form-group-label-color: $gray;
+$form-group-label-text-transform: uppercase;
+$form-control-padding: 10px 15px;
+$form-control-border-width: 1px;
+$form-control-border-style: solid;
+$form-control-border-color: darken($white, 20%);
+$form-control-color: $black;
+$form-control-bg: $white;
+$form-control-border-radius: 0;
+$form-control-placeholder-color: darken($white, 10%);
+$form-control-focus-color: $black;
+$form-control-focus-border-width: 1px;
+$form-control-focus-border-style: solid;
+$form-control-focus-border-color: darken($white, 30%);
+$form-control-focus-box-shadow: darken($white, 20%) 0 0 5px;
+$help-margin: 5px 0 10px 0;
+// ********** /FORM **********//
+
+$breadcrumbs-bg: darken($white, 5%);
+$breadcrumbs-border-radius: 5px;
+$breadcrumbs-link-color: $blueColor;
+$breadcrumbs-link-hover-color: lighten($blueColor, 20%);
+$breadcrumbs-color: $blueColor;
+$breadcrumbs-is-active-color: $gray;
+
+$footer-padding: 10px 0;
+$footer-margin: 0;
+$footer-text-align: center;
+$footer-font-size: 12px;
+
+$modal-bg: $white;
+$modal-border-radius: 10px;
+$modal-box-shadow: $gray 0 0 30px;
+
+$modal-header-border-bottom: 1px solid darken($white, 4%);
+
+$modal-footer-color: $gray;
+
+$modal-light-bg: $black;
+
+$side-bar-border-radius: 5px;
+
+$side-bar-title-padding: 10px;
+$side-bar-title-bg: darken($white, 5%);
+$side-bar-title-color: $gray;
+
+$side-bar-li-bg: $white;
+$side-bar-li-a-color: $gray;
+$side-bar-li-a-hover-color: $black;
+$side-bar-li-hover-border-color: $blueColor;
+
+$side-bar-sub-li-bg: $white;
+$side-bar-sub-li-a-color: $gray;
+$side-bar-sub-li-a-hover-color: $black;
+
+$pagination-li-border: 1px solid darken($white, 20%);
+$pagination-li-bg: darken($white, 5%);
+$pagination-li-hover-bg: $blueColor;
+
+$pagination-li-hover-a-color: $white;
+
+$pagination-is-first-border-radius: 5px 0 0 5px;
+
+$pagination-is-last-border-radius: 0 5px 5px 0;
+
+$pagination-is-current-bg: $gray;
+$pagination-is-current-a-color: $white;
+
+$login-bg: darken($white, 10%);
+
+$login-container-bg: $white;
+$login-container-color: $black;
+$login-container-border: 0;
+$login-container-border-radius: 10px;
+$login-container-box-shadow: 0 0 10px darken($white, 20%);
+
+$login-title-color: $orangeColor;
+
+$login-form-control-bg: $white;
+$login-form-control-border: 1px solid darken($white, 10%);
+$login-form-control-border-radius: 5px;
+$login-form-control-color: $gray;
+$login-form-control-placeholder-color: lighten($gray, 20%);
+
+$login-form-control-submit-bg: darken($white, 5%);
+$login-form-control-submit-color: $orangeColor;
+$login-form-control-submit-hover-bg: $blueColor;
+$login-form-control-submit-hover-color: $white;
+$login-form-control-submit-border: 2px solid $blueColor;
+
+$login-detail-a-color: $orangeColor;
+
+$left-bar-bg: darken($blueColor, 10%);
+$left-bar-width: 120px;
+
+$left-bar-divider-height: 1px;
+$left-bar-divider-bg: $blueColor;
+
+$left-bar-li-a-color: lighten($blueColor, 20%);
+$left-bar-li-a-padding: 15px;
+$left-bar-li-a-hover-color: darken($blueColor, 15%);
+
+$left-bar-sub-li-a-color: $white;
+
+
+
+
+
+

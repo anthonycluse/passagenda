@@ -1,0 +1,60 @@
+<% layout('layout'); %>
+<div class="flexslider">
+  <ul class="slides">
+    <li>
+      <img src="images/themes/basique/SLIDE1.jpg" />
+      <p class="flex-caption">Adventurer Cheesecake Brownie</p>
+    </li>
+    <li>
+      <img src="images/themes/basique/SLIDE2.jpg" />
+      <p class="flex-caption">Adventurer Cheesecake Brownie</p>
+    </li>
+    <li>
+      <img src="images/themes/basique/SLIDE3.jpg" />
+      <p class="flex-caption">Adventurer Cheesecake Brownie</p>
+    </li>
+  </ul>
+</div>
+<div class="container">
+  <% if( typeof page !== 'undefined' ){ %>
+  <div class="grid-12"><%-page.content%></div>
+  <% } else { %>
+  <div class="grid-12">
+    <h2>Bienvenue sur Gestiaweb CMS</h2>
+    <p>
+      Gestiaweb est un système de gestion de contenu (CMS) qui vous permettra de gérer facilement les contenus de votre site Internet, et ce, de façon autonome.
+      Les administrateurs du site pourront venir faire leurs mises à jour et modifications de contenus sans avoir à se soucier de l’environnement graphique. Via Gestiaweb, vous pourrez créer, modifier ou supprimer les pages du site, les articles et les contenus médias.
+      Aucune connaissance en programmation informatique et développement Web n’est ainsi nécessaire.
+      Afin de vous familiariser avec Gestiaweb, la présente notice d’utilisation vous guidera parmi ses différentes fonctionnalités.
+    </p>
+  </div>
+  <div class="clear"></div>
+  <div class="grid-6 alpha">
+    <h3>Modification des images du diaporama</h3>
+    <ol>
+      <li>Paramètre</li>
+      <li>Thème / Editeur de style</li>
+      <li>Edition des fichier HTML</li>
+      <li>Puis modifier manuellement les liens des images du diaporama</li>
+    </ol>
+  </div>
+  <div class="grid-6 omega">
+    <h3>Modification de la page d'accueil</h3>
+    <ol>
+      <li>Ajout d'une page</li>
+      <li>Ajout d'un menu de type "Page d'accueil</li>
+      <li>Enregistrement</li>
+    </ol>
+  </div>
+  <div class="clear"></div>
+  <% } %>
+</div>
+<script>
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      controlNav: true,
+      directionNav: false,
+      animation: 'slide'
+    });
+  });
+</script>

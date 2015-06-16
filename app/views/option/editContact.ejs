@@ -1,0 +1,83 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Paramètres de la page contact</h5></div>
+  <div class="ui-block-content">
+    <form action="/option/contact/update" class="form" method="post">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <div class="form-group">
+        <label for="firstname">Prénom</label>
+        <input type="text" class="form-control" name="options[firstname]" placeholder="Prénom" id="firstname" value="<%-options.firstname%>">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Nom</label>
+        <input type="text" class="form-control" name="options[lastname]" placeholder="Nom de famille" id="lastname" value="<%-options.lastname%>">
+      </div>
+      <div class="form-group">
+        <label for="compagny">Entreprise</label>
+        <input type="text" class="form-control" name="options[compagny]" placeholder="Nom de l'entreprise" id="compagny" value="<%-options.compagny%>">
+      </div>
+      <div class="form-group">
+        <label for="address">Adresse</label>
+        <input type="text" id="address" class="form-control" name="options[address]" placeholder="Adresse" value="<%-options.address%>">
+      </div>
+      <div class="form-group">
+        <label for="complementary_address">Adresse complémentaire</label>
+        <input type="text" class="form-control" name="options[complementary_address]" placeholder="Adresse complémentaire" value="<%-options.complementary_address%>">
+      </div>
+      <div class="form-group">
+        <label for="cp">Code postale</label>
+        <input type="text" id="cp" class="form-control" name="options[cp]" placeholder="Code postale" value="<%-options.cp%>">
+      </div>
+      <div class="form-group">
+        <label for="city">Ville</label>
+        <input type="text" id="city" class="form-control" name="options[city]" placeholder="Ville" value="<%-options.city%>">
+      </div>
+      <div class="form-group">
+        <label for="phone">Numéro de téléphone</label>
+        <input type="text" class="form-control" name="options[phone]" placeholder="Numéro de téléphone" value="<%-options.phone%>">
+      </div>
+      <div class="form-group">
+        <label for="email">Adresse de messagerie</label>
+        <input type="text" class="form-control" name="options[email]" placeholder="Adresse de messagerie" value="<%-options.email%>">
+      </div>
+      <div class="form-group">
+        <label for="textContact" class="label-control">Votre texte avant le module de contact</label>
+        <textarea id="textContact" name="options[textContact]" class="form-control" placeholder="Votre texte avant le module de contact" cols="30" rows="10"><%-options.textContact%></textarea>
+      </div>
+      <a href="#" id="geocode" class="btn btn-warning">Générer la latittude et la longitude</a>
+      <div class="clear"></div>
+      <div class="space20"></div>
+      <div class="form-group">
+        <label for="lat">Lattitude de la carte Google Map</label>
+        <input type="text" id="lat" class="form-control" name="options[lat]" placeholder="Lattitude de la carte Google Map" value="<%-options.lat%>">
+      </div>
+      <div class="form-group">
+        <label for="lng">Longitude de la carte Google Map</label>
+        <input type="text" id="lng" class="form-control" name="options[lng]" placeholder="Longitude de la carte Google Map" value="<%-options.lng%>">
+      </div>
+      <div class="form-group">
+        <label for="zoom">Zoom de la carte Google Map (14 est une valeur conseillé)</label>
+        <input type="text" class="form-control" name="options[zoom]" placeholder="Longitude de la carte Google Map" value="<%-options.zoom%>">
+      </div>
+      <input type="submit" value="Enregistrer" class="btn">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj7vH9hANRXwNeq4tKFLHe4hlqMFtRx14"></script>
+<script>
+  var geocoder = new google.maps.Geocoder();
+  $('#geocode').on('click', codeAddress);
+  function codeAddress(e) {
+    e.preventDefault();
+    var address = $('#address').val()+', '+$('#cp').val()+' '+$('#city').val();
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        $('#lat').val(results[0].geometry.location.A);
+        $('#lng').val(results[0].geometry.location.F);
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+</script>

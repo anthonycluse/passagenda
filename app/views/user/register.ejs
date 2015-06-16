@@ -1,0 +1,35 @@
+<% layout('../_layout') %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Enregistrement d'un compte administrateur</h5></div>
+  <div class="ui-block-content">
+    <form action="/user/signup" method="post" class="form">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <input type="hidden" name="user[right]" value="1">
+      <div class="form-group">
+        <label for="username">nom utilisateur</label>
+        <input type="text" class="form-control" id="username" name="user[username]" required placeholder="Nom utilisateur">
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" name="user[email]" required placeholder="Adresse e-mail">
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" id="password" name="user[password]" required placeholder="Mot de passe">
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirmez votre mot de passe</label>
+        <input type="password" class="form-control" id="confirmPassword" name="user[confirmPassword]" required placeholder="Confirmation du mot de passe">
+      </div>
+      <div class="form-group">
+        <label for="pack" class="control-label">Pack</label>
+        <select name="user[pack]" id="pack" class="form-control">
+          <option value="basique">Offre basique</option>
+          <option value="avantage">Offre avantage</option>
+        </select>
+      </div>
+      <input type="submit" value="S'enregistrer" class="btn btn-default"/>
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

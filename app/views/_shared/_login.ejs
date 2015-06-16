@@ -1,0 +1,16 @@
+<li><a href="/user/edit/"><%- request.user.username %></a></li>
+<li class="top-bar-divider"></li>
+<li><a href="/option/edit">Paramètres</a></li>
+<li class="top-bar-divider"></li>
+<li><a href="/user/logout">Déconnexion</a></li>
+<li class="top-bar-divider"></li>
+<% if( request.user.right === 0 ){ %>
+<li><a href="/user/_index">Utilisateurs</a>
+  <ul>
+    <li style="width: 220px;"><a href="/user/register">Enregistrer un utilisateur</a></li>
+  </ul>
+</li>
+<li class="top-bar-divider"></li>
+<% } %>
+<li><a href="/">Voir le site</a></li>
+<li class="top-bar-divider"></li>

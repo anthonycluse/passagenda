@@ -1,0 +1,71 @@
+<% layout('../_layout'); %>
+<div ng-controller="OrderController">
+<div class="grid-6 alpha">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>1 : Recherche du client</h5> (order id {{newOrderId}})</div>
+    <div class="ui-block-content">
+      <form action="/eccustomer/create" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <div class="form-group">
+          <label for="search">Votre recherche</label>
+          <input type="text" class="form-control" name="search" ng-model="searchCustomer" required placeholder="Prénom ou nom du client" autocomplete="off">
+        </div>
+      </form>
+      <ul ng-repeat="customer in customers | filter:searchCustomer | limitTo:5">
+        <li>{{customer.firstname}} <button ng-click="chooseCustomer(customer)">Choisir</button></li>
+      </ul>
+    </div>
+  </div>
+  <div class="space10"></div>
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>2 : Recherche des produits</h5></div>
+    <div class="ui-block-content">
+      <form action="/eccustomer/create" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <div class="form-group">
+          <label for="search">Votre recherche</label>
+          <input type="text" class="form-control" name="search" ng-model="searchProduct" required placeholder="Prénom ou nom du client" autocomplete="off">
+        </div>
+      </form>
+      <ul ng-repeat="product in products | filter:searchProduct | limitTo:5">
+        <li>{{product.description}} | <button ng-click="addProduct(product)">Ajouter au panier</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>3 : Votre pannier</h5></div>
+    <div class="ui-block-content">
+      <p> Choix du client : {{choosingCustomer.firstname}} {{choosingCustomer.lastname}}</p>
+      <h5>Liste des produits</h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Référence</th>
+            <th>Description</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="product in choosingProducts track by $index">
+            <td>{{product.reference}}</td>
+            <td>{{product.description}}</td>
+            <td><input type="number" min="1" required ng-model="product.quantityDesired"></td>
+            <td>{{product.price * product.quantityDesired}} €</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><b>Total : {{getTotal()}} €</b></p>
+      <form action="/ecorder/create" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%-csrfToken%>">
+        <input type="hidden" name="order[EcCustomerId]" value="{{choosingCustomer.id}}">
+      </form>
+      <button class="btn" ng-click="saveOrder()">Enregistrer</button>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="clear"></div>

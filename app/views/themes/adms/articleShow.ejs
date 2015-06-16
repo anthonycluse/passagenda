@@ -1,0 +1,17 @@
+<% layout('layout'); %>
+
+<div id="blog">
+  <div class="container">
+    <div class="grid-12">
+      <div class="rw">
+        <div id="article">
+          <h2><%-article.title%></h2>
+          <span><%-formatDate(article.createdAt)%></span>
+          <div class="space20"></div>
+          <%-article.content%>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>

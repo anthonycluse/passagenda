@@ -1,0 +1,32 @@
+<!-- // TODO ajouter une margin bottom pour les module d'alertes idem pour bottom -->
+<% if(flash.info && flash.info.length > 0){ %>
+  <div class="alert alert-info">
+    <%- flash.info %>
+  </div>
+  <div class="clear"></div>
+  <div class="space10"></div>
+<% } %>
+
+<% if(flash.success && flash.success.length > 0){ %>
+  <div class="alert alert-success">
+    <%- flash.success %>
+  </div>
+  <div class="clear"></div>
+  <div class="space10"></div>
+<% } %>
+
+<% if(flash.warning && flash.warning.length > 0){ %>
+  <div class="alert alert-warning">
+    <%- flash.warning %>
+  </div>
+  <div class="clear"></div>
+  <div class="space10"></div>
+<% } %>
+
+<% if(flash.danger && flash.danger.length > 0){ %>
+  <div class="alert alert-danger">
+    <%- flash.danger %>
+  </div>
+  <div class="clear"></div>
+  <div class="space10"></div>
+<% } %>

@@ -1,0 +1,63 @@
+{
+  "name": "gestiawebcms",
+  "version": "1.0.0",
+  "description": "Gestiaweb CMS",
+  "main": "Application.js",
+  "dependencies": {
+    "async": "^0.9.0",
+    "browser-sync": "^2.7.10",
+    "bcrypt-nodejs": "^0.0.3",
+    "colors": "^1.0.3",
+    "cheerio": "^0.18.0",
+    "cors": "^2.5.2",
+    "connect-flash": "^0.1.1",
+    "ejs": "^1.0.0",
+    "ejs-locals": "^1.0.2",
+    "csurf": "^1.6.3",
+    "express-rewrite": "^0.0.4",
+    "express-session": "^1.9.2",
+    "gulp": "^3.8.11",
+    "express-urlrewrite": "^1.0.0",
+    "gulp-compass": "^2.1.0",
+    "gulp-changed": "^1.2.1",
+    "gulp-nodemon": "^2.0.3",
+    "gulp-image-resize": "^0.6.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-prompt": "^0.1.2",
+    "gulp-zip": "^2.0.3",
+    "lodash": "^2.4.1",
+    "microscope-web": "^0.0.10",
+    "log4js": "^0.6.20",
+    "image-size": "^0.3.5",
+    "moment": "^2.8.4",
+    "nodemailer": "^1.3.0",
+    "mysql": "^2.5.3",
+    "multer": "^0.1.6",
+    "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3",
+    "passport-github": "^0.1.5",
+    "passport-google": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.57.0",
+    "passport-twitter": "^1.0.2",
+    "require-dir": "^0.3.0",
+    "sequelize": "^2.0.0-rc2",
+    "serve-favicon": "^2.1.7",
+    "shelljs": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node ./bin/www",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anthonycluse/gestiawebcms.git"
+  },
+  "author": "Anthony Cluse",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anthonycluse/gestiawebcms/issues"
+  },
+  "homepage": "https://github.com/anthonycluse/gestiawebcms"
+}

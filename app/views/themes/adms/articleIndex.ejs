@@ -1,0 +1,120 @@
+<% layout('layout'); %>
+
+
+<div id="blog">
+  <div class="container">
+    <div class="grid-12">
+      <% if (articles.length >= 1) { %>
+        <% var i = 0; %>
+          <% articles.forEach(function(article, index){ %>
+            <% if( i === 0 ){ %>
+              <div class="grid-4 alpha">
+                <div class="rw">
+                  <div class="article">
+                    <figure>
+                      <% if(article.thumbnail) { %>
+                        <img src="/uploads/<%=article.thumbnail%>" alt="<%=article.title%>">
+                      <% } else { %>
+                        <img src="/images/themes/adms/NO_BLOG_THUMBNAIL.jpg" alt="<%=article.title%>">
+                      <% } %>
+                      <figcaption>
+                        <h2><%=article.title%></h2>
+                        <span><%=formatDate(article.createdAt)%></span>
+                        <div class="space10"></div>
+                        <p class="floatLeft"><%=formatText(article.content, 0, 20)%>...</p>
+                        <a class="floatRight" href="/blog/<%-article.id%>/<%-article.seo_url%>">Lire la suite</a>
+                        <div class="clear"></div>
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+            <% if( i === 1 ){ %>
+              <div class="grid-4">
+                <div class="rw">
+                  <div class="article">
+                    <figure>
+                      <% if(article.thumbnail) { %>
+                        <img src="/uploads/<%=article.thumbnail%>" alt="<%=article.title%>">
+                      <% } else { %>
+                        <img src="/images/themes/adms/NO_BLOG_THUMBNAIL.jpg" alt="<%=article.title%>">
+                      <% } %>
+                      <figcaption>
+                        <h2><%=article.title%></h2>
+                        <span><%=formatDate(article.createdAt)%></span>
+                        <div class="space10"></div>
+                        <p class="floatLeft"><%=formatText(article.content, 0, 20)%>...</p>
+                        <a class="floatRight" href="/blog/<%-article.id%>/<%-article.seo_url%>">Lire la suite</a>
+                        <div class="clear"></div>
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+            <% if( i === 2 ){ %>
+              <div class="grid-4 omega">
+                <div class="rw">
+                  <div class="article">
+                    <figure>
+                      <% if(article.thumbnail) { %>
+                        <img src="/uploads/<%=article.thumbnail%>" alt="<%=article.title%>">
+                       <% } else { %>
+                        <img src="/images/themes/adms/NO_BLOG_THUMBNAIL.jpg" alt="<%=article.title%>">
+                      <% } %>
+                      <figcaption>
+                        <h2><%=article.title%></h2>
+                        <span><%=formatDate(article.createdAt)%></span>
+                        <div class="space10"></div>
+                        <p class="floatLeft"><%=formatText(article.content, 0, 20)%>...</p>
+                        <a class="floatRight" href="/blog/<%-article.id%>/<%-article.seo_url%>">Lire la suite</a>
+                        <div class="clear"></div>
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
+              </div>
+              <% i = -1; %>
+            <% } %>
+            <% i++; %>
+          <% }); %>
+      <% } else { %>
+        <div class="alert alert-info">
+          Il n'y a aucun article
+        </div>
+      <% } %>
+    </div>
+    <div class="clear"></div>
+    <div class="grid-12">
+      <% if( allArticles.length > options.numberOfLines ){ %>
+      <div class="space20"></div>
+      <ul class="pagination">
+        <% id = parseInt(id); %>
+        <% if( id > 1 ){ %>
+        <% var prevId = id - 1; %>
+        <li class="is-first"><a href="/article/page/<%-prevId%>">&laquo;</a></li>
+        <% }else{ %>
+        <li class="is-first"><a href="#">&laquo;</a></li>
+        <% } %>
+        <% for( var i = 0; i < Math.ceil(allArticles.length/parseInt(options.numberOfLines)); i++ ){%>
+        <% var page = i+1; %>
+        <% if( id === page ){ %>
+        <li class="is-current"><a href="/article/page/<%-page%>"><%-page%></a></li>
+        <% }else{ %>
+        <li><a href="/article/page/<%-page%>"><%-page%></a></li>
+        <% } %>
+        <% } %>
+        <% if( id < Math.ceil(allArticles.length/parseInt(options.numberOfLines)) ){ %>
+        <% var nextId = id + 1; %>
+        <li class="is-last"><a href="/article/page/<%-nextId%>">&raquo;</a></li>
+        <% }else{ %>
+        <li class="is-last"><a href="#">&raquo;</a></li>
+        <% } %>
+      </ul>
+      <div class="space20"></div>
+      <% } %>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>

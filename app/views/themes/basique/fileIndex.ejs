@@ -1,0 +1,43 @@
+<% layout('layout'); %>
+
+<div class="sub-header">
+  <div class="container">
+    <div class="grid-12"><h2>Téléchargement</h2></div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="grid-12">
+    <div class="rw">
+      <div class="space20"></div>
+      <div class="rw">
+        <a href="/file/logout" class="floatRight btn btn-danger">Déconnexion</a>
+        <div class="clear"></div>
+        <hr>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Fichier</th>
+                <th>Lien</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% files.forEach(function(file){ %>
+              <tr>
+                <td><%-file.title%></td>
+                <td><%- file.file %></td>
+                <td><a href="<%-mediumURL%>/uploads/<%-file.file%>">Cliquez ici</a></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="space20"></div>
+</div>

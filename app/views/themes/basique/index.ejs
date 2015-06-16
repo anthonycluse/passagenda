@@ -1,0 +1,49 @@
+<% layout('layout'); %>
+<div class="flexslider">
+  <ul class="slides">
+    <li>
+      <img src="images/themes/basique/SLIDE1.jpg" />
+      <p class="flex-caption">Adventurer Cheesecake Brownie</p>
+    </li>
+    <li>
+      <img src="images/themes/basique/SLIDE2.jpg" />
+      <p class="flex-caption">Adventurer Cheesecake Brownie</p>
+    </li>
+    <li>
+      <img src="images/themes/basique/SLIDE3.jpg" />
+      <p class="flex-caption">Adventurer Cheesecake Brownie</p>
+    </li>
+  </ul>
+</div>
+<div class="container">
+  <div class="grid-12">
+    <% if( typeof page !== 'undefined' ){ %>
+      <%-page.content%>
+    <% } else { %>
+      <h1>Bienvenue sur Gestiaweb CMS</h1>
+      <p>Vous êtes sur la page d'accueil de votre site internet, pour la modifier :</p>
+      <ol>
+        <li>Ajout d'une page</li>
+        <li>Ajout d'un menu de type "Page d'accueil</li>
+        <li>Enregistrement</li>
+      </ol>
+      <p>Pour changer les images du diaporama :</p>
+      <ol>
+        <li>Paramètre</li>
+        <li>Thème / Editeur de style</li>
+        <li>Edition des fichier HTML</li>
+        <li>Puis modifier manuellement les liens des images du diaporama</li>
+      </ol>
+    <% } %>
+  </div>
+  <div class="clear"></div>
+</div>
+<script>
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      controlNav: true,
+      directionNav: false,
+      animation: 'slide'
+    });
+  });
+</script>

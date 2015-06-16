@@ -1,0 +1,16 @@
+<% layout('../_layout') %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression de l'événement "<%-event.title%>"</h5></div>
+  <div class="ui-block-content">
+    <p>
+      <strong>Titre:</strong> <%-event.title%>
+    </p>
+    <hr>
+    <form action="/event/destroy" method="post">
+      <input type="hidden" name="id" value="<%-event.id%>">
+      <input type="hidden" name="_csrf" value="<%-csrfToken%>">
+      <input type="submit" class="btn btn-default" value="Oui le supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<% layout('../_layout'); %>
+<div class="panel">
+  <div class="ui-tool">
+    <ul>
+      <li><a href="/project/_index">Mes projet</a></li>
+      <li><a href="/project/new">Ajouter un projet</a></li>
+      <li><a href="/project/category/new">Ajouter une catégorie</a></li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+</div>
+<div class="space10"></div>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des catégories de projet</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Projet(s)</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if( categories.length ){ %>
+          <% categories.forEach(function(category){ %>
+          <tr>
+            <td><%- category.name %></td>
+            <td>
+              <% if( category.Projects.length ){ %>
+              <%=category.Projects.length%> projet(s)
+              <% }else{ %>
+              <p class="danger">Aucuns projets</p>
+              <% } %>
+            </td>
+            <td>
+              <a href="/project/category/edit/<%- category.id %>">Modifier</a> |
+              <a href="/project/category/delete/<%- category.id %>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+          <%}else{ %>
+          <tr><td><p class="danger" style="text-align: left;">Aucunes catégories.</p></td><td></td><td></td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

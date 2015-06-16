@@ -1,0 +1,30 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Supression du projet "<%-project.title%>"</h5></div>
+  <div class="ui-block-content">
+    <p>
+      <strong>Auteur : </strong> <%- project.author %>
+    </p>
+    <p>
+      <strong>Description : </strong> <%- project.description %>
+    </p>
+    <p>
+      <strong>Miniature :</strong>
+      <img src="/uploads/<%- project.thumbnail %>" width="100px">
+    </p>
+    <p>
+      <strong>Etat</strong>
+      <% if(project.state === true){ %>
+      En ligne
+      <% }else{ %>
+      Hors-ligne
+      <% } %>
+    </p>
+    <form class="form" action="/project/destroy" method="post">
+      <input type="hidden" name="id" value="<%- project.id %>">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <input type="submit" class="btn" value="Oui le supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

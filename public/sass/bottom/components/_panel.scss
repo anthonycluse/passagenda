@@ -1,0 +1,17 @@
+/*
+ * Pannel
+ * @Author Anthony Cluse
+*/
+div.panel{
+	padding: $panel-pading;
+	background-color: $panel-bg;
+	color: $panel-color;
+	border: $panel-border-width $panel-border-style $panel-border-color;
+	@include box-shadow($panel-box-shadow);
+
+	h5, h4, h3, h2, h1{
+		margin: 0;
+		font-size: 18px;
+		font-weight: 600;
+	}
+}

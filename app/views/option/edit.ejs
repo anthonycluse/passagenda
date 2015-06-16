@@ -1,0 +1,67 @@
+<% layout('../_layout'); %>
+<div class="grid-6 alpha">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Paramètres Gestiaweb</h5></div>
+    <div class="ui-block-content">
+      <form action="/option/update" class="form" method="post">
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <div class="form-group">
+          <label for="title">Nombre de lignes dans un tableau</label>
+          <input type="number" class="form-control" name="options[numberOfLines]" placeholder="Le nombre de lignes dans un tableau de votre interface d'administration" value="<%-options.numberOfLines%>">
+        </div>
+        <% if( request.user.right === 0 ){ %>
+        <div class="form-group">
+          <label for="pack" class="control-label">CHOIX DU PACK (FRONT-END)</label>
+          <select name="options[pack]" id="pack" class="form-control">
+            <% if( options.pack === 'basique' ){ %>
+            <option value="basique">Offre basique</option>
+            <option value="avantage">Offre avantage</option>
+            <% }else{ %>
+            <option value="avantage">Offre avantage</option>
+            <option value="basique">Offre basique</option>
+            <% } %>
+          </select>
+          <p class="info-block">Réservé au super administrateur</p>
+        </div>
+        <% } %>
+        <div class="form-group">
+          <label for="mode">Mode</label>
+          <select name="options[mode]" id="mode" class="form-control">
+            <% if(options.mode === '1') { %>
+              <option value="1">En ligne</option>
+            <% }else if(options.mode === '2') { %>
+              <option value="2">En cours de construction</option>
+            <% }else{ %>
+              <option value="3">En maintenance</option>
+            <% } %>
+            <option value="1">En ligne</option>
+            <option value="2">En cours de construction</option>
+            <option value="3">En maintenance</option>
+          </select>
+        </div>
+        <input type="submit" value="Enregistrer" class="btn">
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Paramètres de votre site internet</h5></div>
+    <div class="ui-block-content">
+      <div class="ui-tool">
+        <ul>
+          <li><a href="/option/seo/edit"><icon class="icon icon-google"></icon>Référencement</a></li>
+          <li><a href="/option/smo/edit"><icon class="icon icon-network"></icon>Réseaux sociaux</a></li>
+          <li><a href="/option/robots/edit"><icon class="icon icon-chrome"></icon>Robot google</a></li>
+          <% if( request.user.pack === 'avantage' || request.user.right === 0 ){ %>
+            <li><a href="/option/theme/edit"><icon class="icon icon-color"></icon>Thème / éditeur de style</a></li>
+            <li><a href="/option/modules/edit"><icon class="icon icon-category"></icon>Mes modules</a></li>
+          <% } %>
+          <div class="clear"></div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

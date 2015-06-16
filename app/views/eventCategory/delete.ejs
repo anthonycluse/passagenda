@@ -1,0 +1,18 @@
+<% layout('../_layout') %>
+<h4>Suppression de la catégorie "<%-category.name%>"</h4>
+
+<p>
+    <strong>name:</strong> <%- category.name %>
+</p>
+
+<hr>
+
+<form action="/appointment/category/destroy" method="post">
+    <input type="hidden" name="id" value="<%- category.id %>">
+    <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+
+    <p>
+        <input type="submit" class="btn btn-danger" value="Oui la supprimer">
+        <a href="/appointment/category" class="btn btn-info">Retour à la liste des catégories</a>
+    </p>
+</form>

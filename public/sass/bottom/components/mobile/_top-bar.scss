@@ -1,0 +1,62 @@
+
+@media screen and (max-width : $container-width){
+
+  .top-bar{
+    position: relative;
+
+    .top-bar-wrapper{
+      width: 100%;
+
+      .top-bar-ul{
+
+        li{
+          float: none;
+          clear: both;
+          display: none;
+
+          a{ @include link-colors($top-bar-a-color, $top-bar-a-hover-color); }
+
+          ul{
+            display: block;
+            position: relative;
+            top: 0; left: 0;
+            margin-top: 10px;
+
+            li{
+              float: none;
+              padding: 10px 0;
+              width: 100%;
+              background-color: transparent;
+            }
+
+            li:last-child{ @include border-radius(none); }
+          }
+        }
+
+        .top-bar-title{
+          float: left;
+          display: block;
+        }
+
+        .top-bar-divider{
+          height: 1px; width: 100%;
+          padding: 0;
+          border-right: none;
+          background-color: $top-bar-divider-bg;
+        }
+
+        .top-bar-active{
+          background-color: $li-active-bg;
+
+          &:hover{ background-color: $gray; }
+        }
+      }
+    }
+
+    .top-bar-toggle{
+			display: block;
+		}
+  }
+	
+	.top-bar-space{ height: 0; }
+}

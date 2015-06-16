@@ -1,0 +1,108 @@
+<% layout('../_layout'); %>
+<div class="grid-12">
+  <!--// ---------- CodeMirror ---------- //-->
+  <script src="/javascripts/vendors/codemirror/lib/codemirror.js"></script>
+  <link rel="stylesheet" href="/javascripts/vendors/codemirror/lib/codemirror.css">
+  <script src="/javascripts/vendors/codemirror/mode/codemirror-compressed.js"></script>
+  <link rel="stylesheet" href="/javascripts/vendors/codemirror/theme/monokai.css">
+  <script src="/javascripts/vendors/codemirror/addon/selection/active-line.js"></script>
+  <script src="/javascripts/vendors/codemirror/addon/edit/matchbrackets.js"></script>
+  <link rel="stylesheet" href="/javascripts/vendors/codemirror/addon/display/rulers.js">
+  <!--// ---------- /CodeMirror ---------- //-->
+  <form action="/page/create" method="POST" class="form">
+      <div class="grid-6 alpha">
+        <div class="ui-block">
+          <div class="ui-block-title"><h5>Ajout d'une page</h5></div>
+          <div class="ui-block-content">
+              <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+              <div class="form-group">
+                <label for="title" class="control-label">Titre</label>
+                <input type="text" id="title" name="page[title]" class="form-control" placeholder="title" required="required">
+              </div>
+              <div class="form-group">
+                <label for="content" class="control-label">Texte</label> | 
+                <a href="#" id="changeMode">Changer de mode</a>
+                <textarea name="page[content]" id="content" class="form-control" cols="30" rows="10"></textarea>
+                <textarea id="contentForEditor"></textarea>
+                <textarea class="form-control" name="page[content]" id="contentForEditorDuplicate" disabled="disabled" style="display: none;"></textarea>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-6 omega">
+        <div class="ui-block">
+          <div class="ui-block-title"><h5>Options de la page</h5></div>
+          <div class="ui-block-content">
+            <div class="form-group">
+              <label for="title" class="control-label">Titre pour le référencement</label>
+              <input type="text" id="title" name="page[seo_title]" class="form-control" placeholder="Titre pour le référencement" required="required">
+              <div class="help-block">Soyez explicite, il décris votre page en un maximum conseillé de 15 mots.</div>
+            </div>
+            <div class="form-group">
+              <label for="seo_url" class="control-label">URL pour le référencement</label>
+              <input type="text" id="seo_url" name="page[seo_url]" class="form-control" placeholder="URL pour le référencement" required="required">
+              <div class="alert-block">Ne doit pas comporter d'espace, de caractères spéciaux ou de chiffres, Ex.: lien-de-ma-page</div>
+            </div>
+            <div class="form-group">
+              <label for="state" class="control-label">En ligne</label>
+              <select name="page[state]" id="state" class="form-control">
+                <option value="1">En ligne</option>
+                <option value="0">Hors-ligne</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="share" class="control-label">Activer le partage</label>
+              <select name="page[seo_share]" id="share" class="form-control">
+                <option value="0">Non</option>
+                <option value="1">Oui</option>
+              </select>
+            </div>
+            <input type="submit" class="btn" value="Enregistrer">
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+  </form>
+  <script>
+    // on instancie le ckeditor
+    CKEDITOR.replace('content',{
+      filebrowserImageUploadUrl: '/media/ckeditor/create',
+      extraPlugins: 'container'
+    });
+    // par défaut nous ne serons donc pas en mode édition web pour le codage
+    var editorMode = false;
+    // Mise en place du textarea utilisant CodeMirror
+    var editor = CodeMirror.fromTextArea(document.getElementById('contentForEditor'), {
+      lineNumbers: true,
+      styleActiveLine: true,
+      matchBrackets: true,
+      theme: 'monokai',
+      value: document.getElementById('contentForEditor').value,
+      autofocus: true
+    });
+    // A chaque changement dans le textarea CodeMirror on enregistre dans le textarea qui devra enregistrer le fichier
+    editor.on('change', function(e) {
+      $('#contentForEditorDuplicate').val(editor.getValue());
+    });
+    // on cache l'éditeur de code
+    $('div.CodeMirror').css({display: 'none'});
+    // lors du clique sur le boutton permettant de changer le mode on affiche ou cache l'éditeur
+    $('#changeMode').on('click', function(e){
+      e.preventDefault();
+      if( editorMode ) {
+        $('div.CodeMirror').hide();
+        $('#contentForEditorDuplicate').attr('disabled', 'disabled');
+        $('#content').removeAttr('disabled');
+        $('#cke_content').show();
+        editorMode = false;
+      }else{
+        $('#cke_content').hide();
+        $('div.CodeMirror').show();
+        $('#contentForEditorDuplicate').removeAttr('disabled');
+        $('#content').attr('disabled', 'disabled');
+        editorMode = true;
+      }
+    });
+  </script>
+</div>
+<div class="clear"></div>

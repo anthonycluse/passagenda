@@ -1,0 +1,69 @@
+<% layout('../_layout'); %>
+<div class="grid-6 alpha">
+  <div class="panel">
+    <div class="ui-tool">
+      <form action="/ecorder/search" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <div class="form-group">
+          <label for="search" class="control-label">Rechercher une commande</label>
+          <input type="text" id="search" class="form-control" placeholder="Votre recherche" name="search" required="required">
+          <p class="help-block">Recherche par blabla</p>
+        </div>
+        <input type="submit" class="btn" value="Rechercher">
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+        <li><a href="/ecorder/_index">Liste des commandes</a></li>
+        <li><a href="/ecorder/new">Ajouter une commande</a></li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="space10"></div>
+<div class="grid-12">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des commandes</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Produits</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if( orders.length ){ %>
+            <% orders.forEach(function(order){ %>
+            <tr>
+              <td><%-order.EcCustomer.firstname%></td>
+              <td>
+                <% order.products.forEach(function(product){ %>
+                  <p><%=product.EcProduct.name%> - <b><%=product.EcProduct.price%>€</b></p>
+                <% }); %>
+              </td>
+              <td>
+                <a href="/ecorder/edit/<%-order.id%>">Modifier</a> |
+                <a href="/ecorder/delete/<%-order.id%>">Supprimer</a>
+              </td>
+            </tr>
+            <% }); %>
+            <% }else{ %>
+            <tr><td><p class="danger" style="text-align: left;">Aucune commande.</p><td></td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

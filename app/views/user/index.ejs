@@ -1,0 +1,18 @@
+<% layout('../layout/_login'); %>
+<img src="/images/LOGO.png" alt="" class="login-logo is-retina is-hidden-on-mobile">
+<div class="login-container">
+  <div class="login-wrap">
+    <h1 class="login-title">Connexion</h1>
+    <form action="/user/logon" class="login-form" method="post">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <input type="hidden" name="returnUrl" value="<%-returnUrl%>">
+      <input class="login-form-control" type="text" name="username" placeholder="Nom utilisateur" required autofocus>
+      <input class="login-form-control" type="password" name="password" placeholder="Mot de passe" required>
+      <input class="login-form-control" type="submit" value="Login">
+    </form>
+  </div>
+</div>
+<!--<div class="login-detail">
+  <p>Pas encore de compte ?</p>
+  <a href="/account/register">Créer mon compte</a>
+</div>-->

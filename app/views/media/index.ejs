@@ -1,0 +1,47 @@
+<% layout('../_layout'); %>
+<div class="panel">
+  <div class="ui-tool">
+    <ul>
+      <li><a href="/media/new">Ajouter un média</a></li>
+      <div class="clear"></div>
+    </ul>
+  </div>
+</div>
+<div class="space10"></div>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Liste des médias</h5></div>
+  <div class="ui-block-content">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Fichier</th>
+            <th>Lien</th>
+            <th>Date</th>
+            <th>Taille</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% medias.forEach(function(media){ %>
+          <tr>
+            <td><%-media.title%></td>
+            <td><img src="/uploads/<%- media.file %>" width="50px" /></td>
+            <td><input type="url" value="<%-mediumURL%>/uploads/<%- media.file %>" onfocus="this.select();"></td>
+            <td><%=formatDate(media.createdAt)%></td>
+            <td>
+              <% var size = getFileSize('public/uploads/'+media.file); %>
+              <%=size%> ko
+              <% if(size > 800) { %> <p style="color: red; margin: 0;">Image trop lourde (préconisé : 800 ko)</p> <% } %>
+            </td>
+            <td>
+              <a href="/media/delete/<%- media.id %>">Supprimer</a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

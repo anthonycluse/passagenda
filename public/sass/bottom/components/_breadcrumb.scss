@@ -1,0 +1,24 @@
+
+.breadcrumbs{
+  margin: 0;
+  padding: 10px;
+  background-color: $breadcrumbs-bg;
+  @include border-radius($breadcrumbs-border-radius);
+
+  li{
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+
+    a{ @include link-colors($breadcrumbs-link-color, $breadcrumbs-link-hover-color); }
+  }
+
+  li+li:before{
+    content: '/';
+    margin: 0 10px;
+    color: $breadcrumbs-color;
+  }
+
+  .is-active{ color: $breadcrumbs-is-active-color; }
+}

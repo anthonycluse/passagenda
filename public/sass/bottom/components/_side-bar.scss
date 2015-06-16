@@ -1,0 +1,62 @@
+/*
+ * Side bar
+ * @Author Anthony Cluse
+*/
+.side-bar{
+    @include border-radius($side-bar-border-radius $side-bar-border-radius 0 0);
+
+    .side-bar-title{
+        margin: 0;
+        font-style: 14px;
+        font-weight: 400;
+        padding: $side-bar-title-padding;
+        background-color: $side-bar-title-bg;
+        color: $side-bar-title-color;
+    }
+
+    .side-bar-title:first-child{
+        @include border-radius($side-bar-border-radius $side-bar-border-radius 0 0);
+    }
+
+    ul{
+        margin: 0;
+        padding: 0;
+
+        li{
+            display: block;
+            list-style: none;
+            background-color: $side-bar-li-bg;
+            border-left: 2px solid transparent;
+
+            &:hover{
+                border-left: 2px solid $side-bar-li-hover-border-color;
+
+                ul{
+                    display: block;
+                }
+            }
+
+            a{
+                display: block;
+                padding: 5px;
+                @include link-colors($side-bar-li-a-color, $side-bar-li-a-hover-color);
+            }
+
+            ul{
+                display: none;
+
+                li{
+                    background-color: $side-bar-sub-li-bg;
+
+                    a{
+                        @include link-colors($side-bar-sub-li-a-color, $side-bar-sub-li-a-hover-color);
+                    }
+
+                    &:hover{
+                        border-left: 2px solid transparent;
+                    }
+                }
+            }
+        }
+    }
+}

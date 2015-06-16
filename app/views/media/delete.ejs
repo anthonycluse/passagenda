@@ -1,0 +1,12 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression de "<%-media.title%>"</h5></div>
+  <div class="ui-block-content">
+    <p>Voulez vous vraiment supprimer le média "<%-media.title%>" ?</p>
+    <form action="/media/destroy" method="post" class="form">
+      <input type="hidden" name="id" value="<%- media.id %>">
+      <input type="submit" class="btn btn-default" value="Oui le supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

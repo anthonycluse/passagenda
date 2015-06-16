@@ -1,0 +1,22 @@
+.ui-circle{
+	border: 3px solid $blueColor;
+	width: 150px; height: 150px;
+	text-align: center;
+	margin: 0 auto;
+	@include border-radius(100%);
+	
+	.ui-circle-title{
+		color: $blueColor;
+		font-size: 50px;
+		margin: 0; padding: 0;
+		margin-top: 30px;
+		font-weight: 300;
+	}
+	
+	.ui-circle-content{
+		font-size: 12px;
+		color: $gray;
+		font-style: italic;
+		margin: 0; padding: 0;
+	}
+}

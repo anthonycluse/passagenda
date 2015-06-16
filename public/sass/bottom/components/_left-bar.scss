@@ -1,0 +1,55 @@
+.ui-left-bar-bg{
+    position: fixed;
+    top: 61px;
+    left: 0;
+    width: 120px;
+    height: 100%;
+    background-color: $left-bar-bg;
+    z-index: -1;
+}
+
+.ui-left-bar{
+  width: $left-bar-width;
+  background-color: $left-bar-bg;
+  float: left;
+
+  ul{
+    margin: 0;
+    padding: 0;
+    display: block;
+
+    .ui-left-bar-divider{
+      height: $left-bar-divider-height;
+      background-color: $left-bar-divider-bg;
+      padding: 0;
+    }
+
+    li{
+      list-style: none;
+
+      a{
+        color: $left-bar-li-a-color;
+        display: block;
+        padding: $left-bar-li-a-padding;
+        text-align: center;
+        font-size: 12px;
+
+        &:hover{
+          background-color: $left-bar-li-a-hover-color;
+          @include box-shadow(0 0 30px darken($blueColor, 20%) inset);
+        }
+      }
+
+      ul{
+        display: none;
+
+        li{
+
+          a{
+            color: $left-bar-sub-li-a-color;
+          }
+        }
+      }
+    }
+  }
+}

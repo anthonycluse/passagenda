@@ -1,0 +1,59 @@
+<html>
+  <!DOCTYPE html>
+  <html lang="fr">
+    <head>
+      <title>Gestiaweb - Installation</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <link href="/stylesheets/bottom.css" media="screen, projection" rel="stylesheet" type="text/css" />
+      <link href="/stylesheets/app.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    </head>
+    <body class="login parallax installation">
+      <script src="/javascripts/vendors/jquery.min.js"></script>
+      <script src="/javascripts/bottom.js"></script>
+      <img src="/images/LOGO.png" alt="" class="login-logo is-retina is-hidden-on-mobile">
+      <div class="login-container">
+        <div class="login-wrap">
+          <h1 class="login-title">Installation de Gestiaweb CMS</h1>
+          <form action="/user/installation" method="post" class="form login-form">
+            <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+            <input type="hidden" name="user[right]" value="0">
+            <div class="form-group">
+              <label for="username">Nom utilisateur</label>
+              <input type="text" class="form-control" id="username" name="user[username]" placeholder="Nom utilisateur" required>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" class="form-control" id="email" name="user[email]" placeholder="Adresse e-mail" required/>
+            </div>
+            <div class="form-group">
+              <label for="password">Mot de passe</label>
+              <input type="password" class="form-control" id="password" name="user[password]" placeholder="Mot de passe" required>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirmez votre mot de passe</label>
+              <input type="password" class="form-control" id="confirmPassword" name="user[confirmPassword]" placeholder="Confirmation du mot de passe" required/>
+            </div>
+            <div class="form-group">
+              <label for="pack" class="control-label">Choix du pack</label>
+              <select name="options[pack]" id="pack" class="form-control">
+                <option value="basique">Offre basique</option>
+                <option value="avantage">Offre avantage</option>
+              </select>
+              <p class="help-block">Le choix du pack Avanatge est utilisé pour les modules Front-End, Basique pour une gestion simple de pages</p>
+            </div>
+            <input type="hidden" name="options[theme]" value="basique">
+            <!--<div class="form-group">
+              <label for="theme" class="control-label">Choix du thème</label>
+              <select name="options[theme]" id="theme" class="form-control">
+                <option value="basique">Basique</option>
+                <option value="avantage">Avantage</option>
+              </select>
+            </div>-->
+            <input class="login-form-control" type="submit" value="Installation">
+            <div class="clear"></div>
+          </form>
+        </div>
+      </div>
+    </body>
+  </html>

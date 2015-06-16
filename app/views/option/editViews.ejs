@@ -1,0 +1,19 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Modification des fichiers HTML</h5></div>
+  <div class="ui-block-content">
+    <form action="/option/view/edit" class="form" method="get">
+      <div class="form-group">
+        <label for="view" class="label-control">Choix du fichier</label>
+        <select name="view" id="view" class="form-control">
+          <option value="layout.ejs">layout.ejs</option>
+          <% files.forEach(function(file){ %>
+          <option value="<%-file%>"><%-file%></option>
+          <% }); %>
+        </select>
+      </div>
+      <input type="submit" value="Editer ce fichier" class="btn">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

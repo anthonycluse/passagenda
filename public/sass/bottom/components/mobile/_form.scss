@@ -1,0 +1,12 @@
+@media screen and (max-width : $container-width){
+
+	.form{
+
+		.form-group{
+
+			input[type="submit"], input[type="reset"]{
+				margin: 0 0 10px 0;
+			}
+		}
+	}
+}

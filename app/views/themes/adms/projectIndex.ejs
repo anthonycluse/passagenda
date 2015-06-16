@@ -1,0 +1,206 @@
+<% layout('layout'); %>
+
+<div id="portfolio">
+  <div class="container">
+    <div class="grid-12">
+      <div class="rw">
+        <% if( projects.length >= 1 ){ %>
+        <div class="projects">
+          <% var i = 0; %>
+
+          <% projects.forEach(function(project, index){ %>
+
+          <% if( i === 0 ){ %>
+          <div class="grid-3 alpha">
+            <div class="project" data-id="<%-project.id%>">
+              <img src="/uploads/<%-project.thumbnail%>" alt="">
+              <div class="projectCaption">
+                <span class="projectTitle"><%=project.title%></span>
+                <span class="projectDescription"><%=project.place%></span>
+              </div>
+            </div>
+            <div class="projectShow">
+              <div class="floatLeft projectShowDescription">
+                <h2><%=project.title%></h2>
+                <h3><%=project.place%></h3>
+                <p class="projectLink">Lien : <a href="<%=project.link%>">Cliquez ici</a></p>
+                <p><%-escape(project.description).replace(/\n/g, '<br/>')%></p>
+              </div>
+              <div class="floatLeft projectShowSlider">
+                <div class="flexslider">
+                  <ul class="slides">
+                    <% project.ProjectPhotos.forEach(function(photo){ %>
+                    <li><img src="/uploads/<%-photo.file%>" /></li>
+                    <% }); %>
+                  </ul>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <% } %>
+
+          <% if( i === 1 ){ %>
+          <div class="grid-3">
+            <div class="project" data-id="<%-project.id%>">
+              <img src="/uploads/<%-project.thumbnail%>" alt="">
+              <div class="projectCaption">
+                <span class="projectTitle"><%=project.title%></span>
+                <span class="projectDescription"><%=project.place%></span>
+              </div>
+            </div>
+            <div class="projectShow">
+              <div class="floatLeft projectShowDescription">
+                <h2><%=project.title%></h2>
+                <h3><%=project.place%></h3>
+                <p class="projectLink">Lien : <a href="<%=project.link%>">Cliquez ici</a></p>
+                <p><%-escape(project.description).replace(/\n/g, '<br/>')%></p>
+              </div>
+              <div class="floatLeft projectShowSlider">
+                <div class="flexslider">
+                  <ul class="slides">
+                    <% project.ProjectPhotos.forEach(function(photo){ %>
+                    <li><img src="/uploads/<%-photo.file%>" /></li>
+                    <% }); %>
+                  </ul>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <% } %>
+
+          <% if( i === 2 ){ %>
+          <div class="grid-3">
+            <div class="project" data-id="<%-project.id%>">
+              <img src="/uploads/<%-project.thumbnail%>" alt="">
+              <div class="projectCaption">
+                <span class="projectTitle"><%=project.title%></span>
+                <span class="projectDescription"><%=project.place%></span>
+              </div>
+            </div>
+            <div class="projectShow">
+              <div class="floatLeft projectShowDescription">
+                <h2><%=project.title%></h2>
+                <h3><%=project.place%></h3>
+                <p class="projectLink">Lien : <a href="<%=project.link%>">Cliquez ici</a></p>
+                <p><%-escape(project.description).replace(/\n/g, '<br/>')%></p>
+              </div>
+              <div class="floatLeft projectShowSlider">
+                <div class="flexslider">
+                  <ul class="slides">
+                    <% project.ProjectPhotos.forEach(function(photo){ %>
+                    <li><img src="/uploads/<%-photo.file%>" /></li>
+                    <% }); %>
+                  </ul>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <% } %>
+
+          <% if( i === 3 ){ %>
+          <div class="grid-3 omega">
+            <div class="project" data-id="<%-project.id%>">
+              <img src="/uploads/<%-project.thumbnail%>" alt="">
+              <div class="projectCaption">
+                <span class="projectTitle"><%=project.title%></span>
+                <span class="projectDescription"><%=project.place%></span>
+              </div>
+            </div>
+            <div class="projectShow">
+              <div class="floatLeft projectShowDescription">
+                <h2><%=project.title%></h2>
+                <h3><%=project.place%></h3>
+                <p class="projectLink">Lien : <a href="<%=project.link%>">Cliquez ici</a></p>
+                <p><%-escape(project.description).replace(/\n/g, '<br/>')%></p>
+              </div>
+              <div class="floatLeft projectShowSlider">
+                <div class="flexslider">
+                  <ul class="slides">
+                    <% project.ProjectPhotos.forEach(function(photo){ %>
+                    <li><img src="/uploads/<%-photo.file%>" /></li>
+                    <% }); %>
+                  </ul>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="space20"></div>
+          <% i = -1; %>
+          <% } %>
+
+          <% i++; %>
+
+          <% }); %>
+        </div>
+        <% }else{ %>
+        <div class="alert alert-info">
+          Il n'y a aucun projet
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    
+    function afterSlide(slider) {
+      $(slider).parent().css({
+        height: $(slider).height()
+      });
+    }
+
+    function startSlide(slider) {
+      var sliderHeight = realHeight(slider.children().eq(0).children().eq(0).children());
+      var sliderWidth = realWidth(slider.children().eq(0).children().eq(0).children());
+      var realHeight = (sliderHeight*578)/sliderWidth;
+      console.log(sliderHeight);
+      $(slider).parent().css({
+        height: sliderHeight
+      });
+      $(slider).css({
+        height: sliderHeight
+      });
+    }
+
+    function realHeight(obj){
+        var clone = obj.clone();
+        clone.css("visibility","hidden");
+        $('body').append(clone);
+        var height = clone.outerHeight();
+        clone.remove();
+        return height;
+    }
+
+    function realWidth(obj){
+        var clone = obj.clone();
+        clone.css("visibility","hidden");
+        $('body').append(clone);
+        var width = clone.outerWidth();
+        clone.remove();
+        return width;
+    }
+
+    $('.flexslider').flexslider({
+      controlNav: false,
+      smoothHeight: true,
+      after: afterSlide,
+      start: function(slide) {
+        var $img = $(slide).children().children().children().eq(0);
+        var height = realHeight($img);
+        var width = realWidth($img);
+        var newHeight = (height*578)/width;
+        $(slide).css('height', newHeight);
+        $(slide).children().css('height', newHeight);
+      }
+    });
+
+  });
+</script>

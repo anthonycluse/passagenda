@@ -1,0 +1,40 @@
+/*
+ * Custom buttons
+ * @Author Anthony Cluse
+*/
+.btn{
+    border: $btn-border;
+    color: $btn-color;
+    float: left;
+    margin: $btn-margin;
+    padding: $btn-padding;
+    text-align: center;
+    border: $btn-border-width $btn-border-style $btn-border-color;
+    @include border-radius($btn-border-radius);
+    @include transition-property(all);
+    @include transition-duration(0.3s);
+    @include backgroundColors($btn-bg, $btn-hover-bg);
+
+    &:hover{
+        color: $btn-hover-color;
+    }
+
+    // NOTE Gérer les icones pour les boutons
+    // @import 'icon';
+}
+
+.btn-success{
+    @include button($green);
+}
+
+.btn-info{
+    @include button($blue);
+}
+
+.btn-warning{
+    @include button($yellow);
+}
+
+.btn-danger{
+    @include button($red);
+}

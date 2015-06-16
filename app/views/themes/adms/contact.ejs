@@ -1,0 +1,80 @@
+<% layout('layout'); %>
+
+
+<div id="contact">
+  <div id="header">
+    <div class="container">
+      <div class="grid-12">
+        <div class="rw">
+          <h2>contact</h2>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="grid-12">
+      <div class="space50"></div>
+      <div class="rw">
+        <%-partial('../../_shared/_flash')%>
+        <div class="panel">
+          <%=options.textContact ? options.textContact : 'Texte de la page contact.'%>
+        </div>
+        <div class="space20"></div>
+        <h3>Contactez-nous</h3>
+      </div>
+      <form action="/contact/send" class="form" method="post">
+        <div class="grid-6 alpha">
+          <div class="rw">
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Sujet du message" name="contact[subject]" required autofocus>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Votre adresse e-mail" name="contact[email]" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Société" name="contact[compagny]" required>
+            </div>
+          </div>
+        </div>
+        <div class="grid-6 omega">
+          <div class="rw">
+            <div class="form-group" style="margin: 0;">
+              <textarea id="" cols="30" rows="10" style="width: 530px;" class="form-control" placeholder="Votre message" name="contact[message]" required></textarea>
+            </div>
+            <input type="submit" value="Envoyer" class="floatRight">
+            <div class="clear"></div>
+          </div>
+        </div>
+      </form>
+      <div class="clear"></div>
+      <div class="space50"></div>
+      <div class="grid-8 alpha">
+        <div class="rw">
+          <% if( options.lat !== '' && options.lng !== '' && options.zoom !== '' ){ %>
+          <div id="maps" data-zoom="<%-options.zoom%>" data-lat="<%-options.lat%>" data-lng="<%-options.lng%>"></div>
+          <% }else{ %>
+          <p>Carte Google Maps, veuillez remplir la longitude, latitude et le zoom.</p>
+          <% } %>
+        </div>
+      </div>
+      <div class="grid-4 omega">
+        <div class="rw">
+          <div id="contactInfo">
+            <p class="name"><%=options.firstname ? options.firstname : 'Prénom'%> <%=options.lastname ? options.lastname : 'Nom'%></p>
+            <p class="compagny"><%=options.compagny ? options.compagny : 'Nom de l\'entreprise'%></p>
+            <p class="address"><%=options.address ? options.address : 'Adresse'%></p>
+            <p class="address"><%=options.complementary_address ? options.complementary_address : ''%></p>
+            <p class="city"><%=options.cp ? options.cp : 'Code postale'%> <%=options.city ? options.city : 'Ville'%></p>
+            <p class="phone">Tél. : <%=options.phone ? options.phone : '+33 (0)0 00 00 00 00'%></p>
+            <p class="email">E-mail : <%=options.email ? options.email : 'Adresse e-mail'%></p>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <div class="space50"></div>
+  </div>
+</div>

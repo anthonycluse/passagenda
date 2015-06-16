@@ -1,0 +1,58 @@
+<% layout('../_layout'); %>
+<div class="grid-6 alpha">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Votre profil</h5></div>
+    <div class="ui-block-content">
+      <form action="/user/updateprofil" class="form" method="post">
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <div class="form-group">
+          <label for="firstname">Prénom</label>
+          <input type="text" class="form-control" name="user[firstname]" value="<%-user.firstname%>" placeholder="Votre prénom" />
+        </div>
+        <div class="form-group">
+          <label for="lastname">Nom</label>
+          <input type="text" class="form-control" name="user[lastname]" value="<%-user.lastname%>" placeholder="Votre nom" />
+        </div>
+        <div class="form-group">
+          <label for="address">adresse</label>
+          <input type="text" class="form-control" name="user[address]" value="<%-user.address%>" placeholder="Votre adresse" />
+        </div>
+        <div class="form-group">
+          <label for="postal_code">code postale</label>
+          <input type="text" class="form-control" name="user[postal_code]" value="<%-user.postal_code%>" placeholder="Votre code postale" />
+        </div>
+        <div class="form-group">
+          <label for="city">ville</label>
+          <input type="text" class="form-control" name="user[city]" value="<%-user.city%>" placeholder="Votre ville" />
+        </div>
+        <input type="submit" value="Enregistrer" class="btn" />
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Changement de votre mot de passe</h5></div>
+    <div class="ui-block-content">
+      <form class="form" action="/user/updatepassword" method="post">
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <div class="form-group">
+          <label for="oldPassword">Votre ancien mot de passe</label>
+          <input type="password" class="form-control" name="oldPassword" required placeholder="Votre ancien mot de passe" />
+        </div>
+        <div class="form-group">
+          <label for="newPassword">Votre nouveau mot de passe</label>
+          <input type="password" name="newPassword" required class="form-control" required placeholder="Votre nouveau mot de passe">
+        </div>
+        <div class="form-group">
+          <label for="confirmNewPassword">Confirmer votre nouveau mot de passe</label>
+          <input type="password" name="confirmNewPassword" required class="form-control" required placeholder="Confirmer votre nouveau mot de passe">
+        </div>
+        <input type="submit" value="Enregistrer" class="btn" />
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

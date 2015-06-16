@@ -1,0 +1,21 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Edition du logo</h5></div>
+  <div class="ui-block-content">
+    <% if( options.logo !== '' ){ %>
+      <h5 style="margin: 0;">Votre logo actuel :</h5>
+      <img src="/uploads/<%-options.logo%>" style="height: 20px; margin: 20px 0; border: 2px dotted #d6d6d6;">
+    <% } %>
+    <form action="/option/logo/update" class="form" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+      <div class="form-group">
+        <label for="title">Fichier</label>
+        <input type="file" class="form-control" name="logo" placeholder="Fichier du logo">
+        <p class="help-block">Format : JPEG - Taille (px) : <%=themeOptions.logo.imgWidth%> x <%=themeOptions.logo.imgHeight%></p>
+      </div>
+      <input type="submit" value="Enregistrer" class="btn">
+      <a href="/option/logo/destroy" class="btn">Supprimer le logo</a>
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

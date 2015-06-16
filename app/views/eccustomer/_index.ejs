@@ -1,0 +1,134 @@
+<% layout('../_layout'); %>
+<div class="grid-6 alpha">
+  <div class="panel">
+    <div class="ui-tool">
+      <form action="/eccustomer/search" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+        <div class="form-group">
+          <label for="search" class="control-label">Rechercher un client</label>
+          <input type="text" id="search" class="form-control" placeholder="Votre recherche" name="search" required="required">
+          <p class="help-block">Recherche par prénom, nom ou adresse e-mail</p>
+        </div>
+        <input type="submit" class="btn" value="Rechercher">
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+      <li><a href="/eccustomer/_index">Liste des clients</a></li>
+        <li><a href="/eccustomer/new">Ajouter un client</a></li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="space10"></div>
+<div class="grid-12">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des clients</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th>E-mail</th>
+              <th>Adresse</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% customers.forEach(function(customer){ %>
+            <tr>
+              <td><%-customer.firstname%></td>
+              <td><%-customer.lastname%></td>
+              <td><%-customer.email%></td>
+              <td>
+                <%=customer.address%>,
+                <%=customer.complementary_address%>,
+                <%=customer.postal_code%>,
+                <%=customer.city%>,
+                <%=customer.country%>
+              </td>
+              <td>
+                <a href="/eccustomer/edit/<%-customer.id%>">Modifier</a> | 
+                <a href="/eccustomer/delete/<%-customer.id%>">Supprimer</a>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <% if( allCustomers.length > options.numberOfLines ){ %>
+      <div class="space20"></div>
+      <ul class="pagination">
+        <!-- On stocke l'id de la page -->
+        <% id = parseInt(id); %>
+        <!-- Si l'id est plus grand que 1 alors la flèche vers la gauche possède un lien vers la page précédente, sinon "#" -->
+        <% if( id > 1 ){ %>
+          <% var prevId = id - 1; %>
+          <li class="is-first"><a href="/eccustomer/_index/page/<%-prevId%>">&laquo;</a></li>
+        <% }else{ %>
+          <li class="is-first"><a href="#">&laquo;</a></li>
+        <% } %>
+        <!-- On stocke le nombre de page -->
+        <% var numberOfPages = Math.ceil(allCustomers.length/parseInt(options.numberOfLines)); %>
+        <!-- si le nombre de page dépasse les 20, on va créer un algo permettant d'afficher seuelement les pages nécessaires-->
+        <% if (numberOfPages >= 20 ) { %>
+          <!-- deux cas possible, on dépasse la moitier du nombre de page-->
+          <!-- ou on est en dessous la moitier-->
+          <% if (id <= numberOfPages/2 ) { %>
+            <% for (var i = id-2; i < id+3; i++) { %>
+              <% if (i >= 1) {%>
+                <% if (i === id) { %>
+                  <li class="is-current"><a href="/eccustomer/_index/page/<%-i%>"><%-i%></a></li>
+                <% } else { %>
+                  <li><a href="/eccustomer/_index/page/<%-i%>"><%-i%></a></li>
+                <% } %>
+              <% } %>
+            <% } %>
+            <li><a href="#">...</a></li>
+            <li><a href="/eccustomer/_index/page/<%-numberOfPages%>"><%-numberOfPages%></a></li>
+          <% } else { %>
+            <li><a href="/eccustomer/_index/page/1">1</a></li>
+            <li><a href="#">...</a></li>
+            <% for (var i = id-2; i < id+3; i++) { %>
+              <% if (i <= numberOfPages) {%>
+                <% if (i === id) { %>
+                  <li class="is-current"><a href="/eccustomer/_index/page/<%-i%>"><%-i%></a></li>
+                <% } else { %>
+                  <li><a href="/eccustomer/_index/page/<%-i%>"><%-i%></a></li>
+                <% } %>
+              <% } %>
+            <% } %>
+          <% } %>
+        <!-- si on ne dépasse pas les 20 pages alors on va afficher les 20 - 1  pages sans en cacher une -->
+        <% } else { %>
+          <% for( var i = 0; i < numberOfPages; i++ ){%>
+            <% var page = i+1; %>
+            <% if( id === page ){ %>
+              <li class="is-current"><a href="/eccustomer/_index/page/<%-page%>"><%-page%></a></li>
+            <% }else{ %>
+              <li><a href="/eccustomer/_index/page/<%-page%>"><%-page%></a></li>
+            <% } %>
+          <% } %>
+        <% } %>
+        <!-- Si l'id est plus petit que le nombre de page alors la flèche vers la droite possède un lien vers la page précédente, sinon "#" -->
+        <% if( id < numberOfPages ){ %>
+          <% var nextId = id + 1; %>
+          <li class="is-last"><a href="/eccustomer/_index/page/<%-nextId%>">&raquo;</a></li>
+        <% }else{ %>
+          <li class="is-last"><a href="#">&raquo;</a></li>
+        <% } %>
+      </ul>
+      <% } %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

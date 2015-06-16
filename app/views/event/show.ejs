@@ -1,0 +1,22 @@
+<h3>Show</h3>
+
+<p>
+	<strong>Title:</strong> <%- article.title %>
+</p>
+<p>
+	<strong>Content:</strong> <%- article.content %>
+</p>
+<p>
+	<strong>State:</strong>
+	<% if(article.state === true){ %>
+		Publish
+	<% }else{ %>
+		Offline
+	<% } %>
+</p>
+
+<hr>
+	
+<a href="/article" class="btn btn-primary">Back to list</a>
+<a href="/article/edit/<%- article.id %>" class="btn btn-default">Edit</a>
+<a href="/article/delete/<%- article.id %>" class="btn btn-default">Delete</a>

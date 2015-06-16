@@ -1,0 +1,24 @@
+@media screen and (max-width : $container-width){
+
+	.login{
+
+		.login-container{
+			width: 100%;
+			min-height: 200px;
+			background-color: transparent;
+			margin-left: 0;
+			border: 0;
+    		@include box-shadow(none !important);
+
+			.login-wrap{
+
+				.login-form{
+
+					.login-form-control{
+						border: 0;
+					}
+				}		
+			}
+		}	
+	}
+}

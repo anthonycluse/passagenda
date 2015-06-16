@@ -1,0 +1,13 @@
+/*
+ * Images
+ * @Author Anthony Cluse
+*/
+
+img{
+	display: block;
+	margin: $img-margin;
+}
+
+.img-rounded{
+	@include border-radius($img-rounded-border-radius);
+}

@@ -1,0 +1,75 @@
+<% layout('../_layout'); %>
+<form action="/article/create" method="POST" class="form" enctype="multipart/form-data">
+  <div class="grid-12">
+    <div class="grid-6 alpha">
+      <div class="ui-block">
+        <div class="ui-block-title"><h5>Ajout d'un article</h5></div>
+        <div class="ui-block-content">
+          <input type="hidden" name="_csrf" value="<%- csrfToken %>">
+          <div class="form-group">
+            <label for="title" class="control-label">* Titre</label>
+            <input type="text" id="title" name="article[title]" class="form-control" placeholder="title" required="required">
+          </div>
+          <div class="form-group">
+            <label for="thumbnail" class="control-label">Image miniature</label>
+            <input type="file" id="thumbnail" name="thumbnail" class="form-control" placeholder="Image miniature">
+            <p class="help-block">Format : JPEG - Taille (px) : <%=themeOptions.modules.blog.thumbnail.imgWidth%> x <%=themeOptions.modules.blog.thumbnail.imgHeight%></p>
+          </div>
+          <div class="form-group">
+            <label for="content" class="control-label">* Texte</label>
+            <textarea name="article[content]" id="content" class="form-control" cols="30" rows="10" ng-model="seoContent"></textarea>
+          </div>
+          <script>
+            CKEDITOR.replace('content',{
+              filebrowserImageUploadUrl: '/media/ckeditor/create'
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="grid-6 omega">
+      <div class="ui-block">
+        <div class="ui-block-title"><h5>Options de l'article</h5></div>
+        <div class="ui-block-content">
+          <div class="form-group">
+            <label for="category" class="control-label">* Categorie</label>
+            <select name="article[ArticleCategoryId]" id="category" class="form-control">
+              <% categories.forEach(function(category){ %>
+              <option value="<%-category.id%>"><%-category.name%></option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="title" class="control-label">Titre pour le référencement</label>
+            <input type="text" id="title" class="form-control" placeholder="title" name="article[seo_title]" required="required">
+            <div class="help-block">Soyez explicite, il décris votre page en un maximum conseillé de 15 mots.</div>
+          </div>
+          <div class="form-group">
+            <label for="seo_url" class="control-label">* URL pour le référencement</label>
+            <input type="text" id="seo_url" class="form-control" placeholder="seo_url" name="article[seo_url]" required="required">
+            <div class="alert-block">Ne doit pas comporter d'espace, de caractères spéciaux ou de chiffres, Ex.: lien-de-ma-page</div>
+          </div>
+          <div class="form-group">
+            <label for="state" class="control-label">* En ligne</label>
+            <select name="article[state]" id="state" class="form-control">
+              <option value="1">En ligne</option>
+              <option value="0">Hors-ligne</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="share" class="control-label">* Activer le partage</label>
+            <select name="article[seo_share]" id="share" class="form-control">
+              <option value="1">Oui</option>
+              <option value="0">Non</option>
+            </select>
+          </div>
+          <input type="submit" class="btn btn-default" value="Enregistrer">
+          <a href="/article" class="btn btn-primary">Retour à la lise</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</form>
+<div class="clear"></div>
