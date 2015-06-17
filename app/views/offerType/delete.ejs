@@ -1,0 +1,13 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression de "<%-offertype.name%>"</h5></div>
+  <div class="ui-block-content">
+    <p>Voulez vous vraiment supprimer l'offre "<%-offertype.name%>" ?</p>
+    <form action="/offertype/destroy" method="post" class="form">
+      <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+      <input type="hidden" name="id" value="<%=offertype.id%>">
+      <input type="submit" class="btn btn-default" value="Oui la supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

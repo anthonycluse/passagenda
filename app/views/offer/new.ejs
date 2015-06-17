@@ -1,0 +1,43 @@
+<% layout('../_layout') %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Ajout d'une offre</h5></div>
+  <div class="ui-block-content">
+    <form action="/offer/create" method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+      <div class="form-group">
+        <label for="startDate" class="control-label">Date de début</label>
+        <input type="date" id="startDate" name="offer[startDate]" class="form-control" placeholder="Date de début" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="startDate" class="control-label">Date de fin</label>
+        <input type="date" id="startDate" name="offer[endDate]" class="form-control" placeholder="Date de début" required>
+      </div>
+      <div class="form-group">
+        <label for="conditions" class="control-label">Conditions</label>
+        <textarea name="offer[conditions]" id="conditions" class="form-control" cols="30" rows="10"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="description" class="control-label">Description</label>
+        <textarea name="offer[description]" id="description" class="form-control" cols="30" rows="10"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="offerType" class="label-control">Type de l'offre</label>
+        <select name="offer[OfferTypeId]" id="offerType" class="form-control">
+          <% offerTypes.forEach(function(offerType){ %>
+          <option value="<%=offerType.id%>"><%-offerType.name%></option>
+          <% }); %>
+        </select>
+      </div>
+      <input type="submit" value="Enregistrer" class="btn">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>
+<script>
+  CKEDITOR.replace('description',{
+    filebrowserImageUploadUrl: '/media/ckeditor/create'
+  });
+  CKEDITOR.replace('conditions',{
+    filebrowserImageUploadUrl: '/media/ckeditor/create'
+  });
+</script>

@@ -12,7 +12,11 @@ _.extend(OfferDao.prototype, {
   },
 
   get: function (id, callback) {
-    return this.context.Offer.find(id);
+    return this.context.Offer.find({where: {id: id}, include: [{ model: this.context.OfferType}]});
+  },
+
+  getLastTen: function(){
+    return this.context.Offer.findAll({limit: 10, order: 'id desc'});
   },
 
   save: function(properties, callback){

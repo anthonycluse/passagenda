@@ -1,0 +1,71 @@
+<% layout('../_layout'); %>
+<div class="grid-6 alpha">
+  <div class="panel">
+    <div class="ui-tool">
+      <form action="/ecorder/search" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+        <div class="form-group">
+          <label for="search" class="control-label">Rechercher une offre</label>
+          <input type="text" id="search" class="form-control" placeholder="Votre recherche" name="search" required="required">
+          <p class="help-block">Recherche par description</p>
+        </div>
+        <input type="submit" class="btn" value="Rechercher">
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+        <li><a href="/offer/_index">Liste des offres</a></li>
+        <li><a href="/offer/new">Ajouter une offre</a></li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="space10"></div>
+<div class="grid-12">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des offres</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date de début</th>
+              <th>Date de fin</th>
+              <th>Type de l'offre</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if( offers.length ){ %>
+            <% offers.forEach(function(offer){ %>
+            <tr>
+              <td><%=offer.id%></td>
+              <td><%=formatDate(offer.startDate)%></td>
+              <td><%=formatDate(offer.endDate)%></td>
+              <td><%=offer.OfferType.name%></td>
+              <td><%=offer.description.substr(0, 20)%>...</td>
+              <td>
+                <a href="/offer/edit/<%=offer.id%>">Modifier</a> |
+                <a href="/offer/delete/<%=offer.id%>">Supprimer</a>
+              </td>
+            </tr>
+            <% }); %>
+            <% }else{ %>
+            <tr><td><p class="danger" style="text-align: left;">Aucune offre</p><td></td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

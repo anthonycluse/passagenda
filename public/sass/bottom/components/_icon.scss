@@ -99,3 +99,7 @@
 .icon-money{
     @include backgroundImage('#{$icon-path}MONEY', png, 16px, 16px);
 }
+
+.icon-card{
+    @include backgroundImage('#{$icon-path}CARD', png, 16px, 16px);
+}

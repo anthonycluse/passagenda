@@ -1,0 +1,15 @@
+<% layout('../_layout') %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Ajout d'un type d'offre</h5></div>
+  <div class="ui-block-content">
+    <form action="/offertype/create" method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+      <div class="form-group">
+        <label for="name" class="control-label">Nom du type</label>
+        <input type="text" id="name" name="offertype[name]" class="form-control" placeholder="Nom du type d'offre" required autofocus>
+      </div>
+      <input type="submit" value="Enregistrer" class="btn">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<% layout('../_layout'); %>
+<form action="/offer/update" method="POST" class="form">
+  <div class="grid-12">
+    <div class="ui-block">
+      <div class="ui-block-title"><h5>Modification de l'offre "<%=offer.id%>"</h5></div>
+      <div class="ui-block-content">
+        <input type="hidden" name="offer[id]" value="<%-offer.id%>">
+        <input type="hidden" name="_csrf" value="<%-csrfToken%>">
+        <div class="form-group">
+          <label for="startDate" class="control-label">Date de début</label>
+          <input type="text" id="startDate" name="offer[startDate]" class="form-control" placeholder="Date de début" value="<%=offer.startDate%>" required autofocus>
+        </div>
+        <div class="form-group">
+          <label for="startDate" class="control-label">Date de fin</label>
+          <input type="text" id="startDate" name="offer[endDate]" class="form-control" placeholder="Date de début" value="<%=offer.endDate%>" required>
+        </div>
+        <div class="form-group">
+          <label for="conditions" class="control-label">Conditions</label>
+          <textarea name="offer[conditions]" id="conditions" class="form-control" cols="30" rows="10"><%=offer.conditions%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="description" class="control-label">Description</label>
+          <textarea name="offer[description]" id="description" class="form-control" cols="30" rows="10"><%=offer.description%></textarea>
+        </div>
+        <div class="form-group">
+          <label for="offerType" class="label-control">Type de l'offre</label>
+          <select name="offer[OfferTypeId]" id="offerType" class="form-control">
+            <option value="<%=offer.OfferType.id%>"><%=offer.OfferType.name%></option>
+            <% offerTypes.forEach(function(offerType){ %>
+            <option value="<%=offerType.id%>"><%-offerType.name%></option>
+            <% }); %>
+          </select>
+        </div>
+        <input type="submit" class="btn btn-default" value="Enregistrer">
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</form>
+<script>
+  CKEDITOR.replace('description',{
+    filebrowserImageUploadUrl: '/media/ckeditor/create'
+  });
+  CKEDITOR.replace('conditions',{
+    filebrowserImageUploadUrl: '/media/ckeditor/create'
+  });
+</script>

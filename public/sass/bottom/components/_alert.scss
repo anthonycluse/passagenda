@@ -3,23 +3,23 @@
  * @Author Anthony Cluse
 */
 div.alert{
-	padding: $alert-padding;
-	cursor: $alert-cursor;
+  padding: $alert-padding;
+  cursor: $alert-cursor;
 }
 
 div.alert-success{
-	@include alert($green);
+  @include alert($green);
 }
 
 div.alert-info{
-	@include alert($blue);
+  @include alert($blue);
 }
 
 div.alert-warning{
-	@include alert($yellow);
+  @include alert($yellow);
 }
 
 div.alert-danger{
-	@include alert($red);
+  @include alert($red);
 }
 

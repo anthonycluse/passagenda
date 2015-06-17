@@ -1,0 +1,65 @@
+<% layout('../_layout'); %>
+<div class="grid-6 alpha">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+        <li><a href="/offer/_index"><span class="icon icon-card"></span>Liste des offres</a></li>
+        <li><a href="/offertype/_index"><span class="icon icon-category"></span>Liste des types d'offres</a></li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+  <div class="space10"></div>
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des dernieres promotions</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Date de début</th>
+              <th>Date de fin</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% offers.forEach(function(offer){ %>
+            <tr>
+              <td><%=formatDate(offer.startDate)%></td>
+              <td><%=formatDate(offer.endDate)%></td>
+              <td><%=offer.description.substr(0, 20)%>...</td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="grid-6 omega">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+        <li><a href="#"><span class="icon icon-ecommerce"></span>Liste des magasins</a></li>
+        <li><a href="#"><span class="icon icon-category"></span>Liste des ****</a></li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+  <div class="space10"></div>
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des derniers ****</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
