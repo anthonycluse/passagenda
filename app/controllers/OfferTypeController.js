@@ -63,7 +63,7 @@ module.exports = OfferTypeController = Controller.extend({
   },
 
   new: function (request, response) {
-    response.render('offertype/new');
+    response.render('offerType/new');
   },
 
   create: function (request, response) {
