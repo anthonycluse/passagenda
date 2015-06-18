@@ -8,11 +8,11 @@ var OfferDao = function () {
 _.extend(OfferDao.prototype, {
 
   getAll: function (callback) {
-    return this.context.Offer.findAll({order: 'id desc', include: [{ model: this.context.OfferType}]});
+    return this.context.Offer.findAll({order: 'id desc', include: [{model: this.context.OfferType}, {model: this.context.OfferCategory}]});
   },
 
   get: function (id, callback) {
-    return this.context.Offer.find({where: {id: id}, include: [{ model: this.context.OfferType}]});
+    return this.context.Offer.find({where: {id: id}, include: [{ model: this.context.OfferType}, {model: this.context.OfferCategory}]});
   },
 
   getLastTen: function(){

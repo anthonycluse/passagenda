@@ -4,6 +4,7 @@ var securityFltrs  = require('../filters/security');
 var csrfFltrs      = require('../filters/csrf');
 var OfferDao       = require('../dao/OfferDao');
 var OfferTypeDao   = require('../dao/OfferTypeDao');
+var OfferCategoryDao   = require('../dao/OfferCategoryDao');
 var _              = require('lodash');
 var fs             = require('fs');
 
@@ -17,6 +18,7 @@ module.exports = OfferController = Controller.extend({
   initialize: function () {
     this.offerDao = new OfferDao();
     this.offerTypeDao = new OfferTypeDao();
+    this.offerCategoryDao = new OfferCategoryDao();
   },
 
   filters: [
@@ -44,6 +46,7 @@ module.exports = OfferController = Controller.extend({
 
   _index: function(request, response) {
     this.offerDao.getAll().success(function (offers) {
+      console.log(offers);
       response.render('offer/_index', {'offers': offers});
     });
   },
@@ -62,8 +65,11 @@ module.exports = OfferController = Controller.extend({
   },
 
   new: function (request, response) {
-    this.offerTypeDao.getAll().success( function(offerTypes){
-      response.render('offer/new', {offerTypes: offerTypes});
+    var self = this;
+    self.offerTypeDao.getAll().success( function(offerTypes){
+      self.offerCategoryDao.getAll().success( function(offercategories){
+        response.render('offer/new', {offerTypes: offerTypes, offercategories: offercategories});
+      });
     });
   },
 

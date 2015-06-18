@@ -1,0 +1,15 @@
+<% layout('../_layout') %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Ajout d'une catégorie</h5></div>
+  <div class="ui-block-content">
+    <form action="/offercategory/create" method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+      <div class="form-group">
+        <label for="name" class="control-label">Nom de la catégorie</label>
+        <input type="text" id="name" name="offercategory[name]" class="form-control" placeholder="Nom de la catégorie" required autofocus>
+      </div>
+      <input type="submit" value="Enregistrer" class="btn">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

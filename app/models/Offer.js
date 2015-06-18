@@ -16,6 +16,7 @@ module.exports = function (db, Types) {
     classMethods:{
       associate: function (models) {
         Offer.belongsTo(models.OfferType);
+        Offer.belongsTo(models.OfferCategory);
       }
     }
   });
