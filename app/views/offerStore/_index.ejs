@@ -1,0 +1,46 @@
+<% layout('../_layout'); %>
+<div class="grid-12">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+        <li><a href="/offerstore/_index">Liste des boutiques</a></li>
+        <li><a href="/offerstore/new">Ajouter une boutique</a></li>
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="space10"></div>
+<div class="grid-12">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des boutiques</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if( offerstores.length ){ %>
+            <% offerstores.forEach(function(offerstore){ %>
+            <tr>
+              <td><%=offerstore.name%></td>
+              <td>
+                <a href="/offerstore/delete/<%=offerstore.id%>">Supprimer</a>
+              </td>
+            </tr>
+            <% }); %>
+            <% }else{ %>
+            <tr><td><p class="danger" style="text-align: left;">Aucune catégorie</p><td></td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

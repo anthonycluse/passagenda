@@ -17,6 +17,7 @@ module.exports = function (db, Types) {
       associate: function (models) {
         Offer.belongsTo(models.OfferType);
         Offer.belongsTo(models.OfferCategory);
+        Offer.belongsTo(models.OfferStore);
       }
     }
   });

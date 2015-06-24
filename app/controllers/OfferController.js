@@ -5,6 +5,7 @@ var csrfFltrs      = require('../filters/csrf');
 var OfferDao       = require('../dao/OfferDao');
 var OfferTypeDao   = require('../dao/OfferTypeDao');
 var OfferCategoryDao   = require('../dao/OfferCategoryDao');
+var OfferStoreDao   = require('../dao/OfferStoreDao');
 var _              = require('lodash');
 var fs             = require('fs');
 
@@ -19,6 +20,7 @@ module.exports = OfferController = Controller.extend({
     this.offerDao = new OfferDao();
     this.offerTypeDao = new OfferTypeDao();
     this.offerCategoryDao = new OfferCategoryDao();
+    this.offerStoreDao = new OfferStoreDao();
   },
 
   filters: [
@@ -68,7 +70,13 @@ module.exports = OfferController = Controller.extend({
     var self = this;
     self.offerTypeDao.getAll().success( function(offerTypes){
       self.offerCategoryDao.getAll().success( function(offercategories){
-        response.render('offer/new', {offerTypes: offerTypes, offercategories: offercategories});
+        self.offerStoreDao.getAll().success( function(offerstores){
+          response.render('offer/new', {
+            offerTypes: offerTypes,
+            offercategories: offercategories,
+            offerstores: offerstores
+          });
+        });
       });
     });
   },

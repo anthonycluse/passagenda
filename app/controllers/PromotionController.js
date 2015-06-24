@@ -1,5 +1,6 @@
 var Controller    = require('microscope-web').Controller;
 var OfferDao       = require('../dao/OfferDao');
+var OfferStoreDao       = require('../dao/OfferStoreDao');
 var securityFltrs = require('../filters/security');
 var csrfFltrs     = require('../filters/csrf');
 var _             = require('lodash');
@@ -10,6 +11,7 @@ module.exports = PromotionController = Controller.extend({
 
   initialize: function () {
     this.offerDao = new OfferDao();
+    this.offerStoreDao = new OfferStoreDao();
   },
 
   filters:[
@@ -25,7 +27,12 @@ module.exports = PromotionController = Controller.extend({
   _index: function(request, response){
     var self = this;
     self.offerDao.getLastTen().success( function(offers){
-      response.render('promotion/_index', {offers: offers});
+      self.offerStoreDao.getLastTen().success( function(offerstores){
+        response.render('promotion/_index', {
+          offers: offers,
+          offerstores: offerstores
+        });
+      });
     });
   },
 

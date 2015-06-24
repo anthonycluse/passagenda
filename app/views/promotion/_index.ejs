@@ -41,23 +41,28 @@
   <div class="panel">
     <div class="ui-tool">
       <ul>
-        <li><a href="#"><span class="icon icon-ecommerce"></span>Liste des magasins</a></li>
-        <li><a href="#"><span class="icon icon-category"></span>Liste des ****</a></li>
+        <li><a href="/offerstore/_index"><span class="icon icon-ecommerce"></span>Liste des boutiques</a></li>
         <div class="clear"></div>
       </ul>
     </div>
   </div>
   <div class="space10"></div>
   <div class="ui-block">
-    <div class="ui-block-title"><h5>Liste des derniers ****</h5></div>
+    <div class="ui-block-title"><h5>Liste des dernieres boutiques</h5></div>
     <div class="ui-block-content">
       <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered">
           <thead>
             <tr>
+              <th>Nom de la boutique</th>
             </tr>
           </thead>
           <tbody>
+            <% offerstores.forEach(function(store){ %>
+            <tr>
+              <td><%=store.name%></td>
+            </tr>
+            <% }); %>
           </tbody>
         </table>
       </div>

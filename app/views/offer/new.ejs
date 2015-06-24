@@ -14,11 +14,11 @@
       </div>
       <div class="form-group">
         <label for="conditions" class="control-label">Conditions</label>
-        <textarea name="offer[conditions]" id="conditions" class="form-control" cols="30" rows="10"></textarea>
+        <textarea name="offer[conditions]" id="conditions" class="form-control" cols="30" rows="10" placeholder="Conditions de l'offre" required></textarea>
       </div>
       <div class="form-group">
         <label for="description" class="control-label">Description</label>
-        <textarea name="offer[description]" id="description" class="form-control" cols="30" rows="10"></textarea>
+        <textarea name="offer[description]" id="description" class="form-control" cols="30" rows="10" placeholder="Description de l'offre" required></textarea>
       </div>
       <div class="form-group">
         <label for="offerType" class="label-control">Type de l'offre</label>
@@ -36,16 +36,24 @@
           <% }); %>
         </select>
       </div>
+      <div class="form-group">
+        <label for="offerStore" class="label-control">Boutique de l'offre</label>
+        <select name="offer[OfferStoreId]" id="offerStore" class="form-control">
+          <% offerstores.forEach(function(offerstore){ %>
+          <option value="<%=offerstore.id%>"><%-offerstore.name%></option>
+          <% }); %>
+        </select>
+      </div>
       <input type="submit" value="Enregistrer" class="btn">
       <div class="clear"></div>
     </form>
   </div>
 </div>
 <script>
-  CKEDITOR.replace('description',{
+  /*CKEDITOR.replace('description',{
     filebrowserImageUploadUrl: '/media/ckeditor/create'
   });
   CKEDITOR.replace('conditions',{
     filebrowserImageUploadUrl: '/media/ckeditor/create'
-  });
+  });*/
 </script>
