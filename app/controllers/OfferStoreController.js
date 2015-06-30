@@ -3,6 +3,7 @@ var commonFltrs       = require('../filters/commons');
 var securityFltrs     = require('../filters/security');
 var csrfFltrs         = require('../filters/csrf');
 var OfferStoreDao     = require('../dao/OfferStoreDao');
+var StorePhotoDao     = require('../dao/StorePhotoDao');
 var _                 = require('lodash');
 var fs                = require('fs');
 
@@ -12,6 +13,7 @@ module.exports = OfferStoreController = Controller.extend({
 
   initialize: function () {
     this.offerStoreDao = new OfferStoreDao();
+    this.storePhotoDao = new StorePhotoDao();
   },
 
   filters: [
@@ -63,11 +65,24 @@ module.exports = OfferStoreController = Controller.extend({
   create: function (request, response) {
     var self = this;
     var offerstore = request.body.offerstore;
+    var photos = request.files.photos;
     this.offerStoreDao.save(offerstore, function(modelError, offerstore){
       if(modelError){
         request.flash('danger', self._parseValidationError(modelError));
         response.redirect('/offerstore/new');
       }else{
+        console.log(photos);
+        if( photos.length > 1 ){
+          _.forEach(photos, function(photo){
+            photo.OfferStoreId = offerstore.id;
+            photo.file = photo.name;
+            self.storePhotoDao.save(photo, function(storePhoto){});
+          });
+        }else{
+          photos.OfferStoreId = offerstore.id;
+          photos.file = photos.name;
+          self.storePhotoDao.save(photos, function(storePhoto){});
+        }
         request.flash('success', 'Boutique sauvegardée');
         response.redirect(self.baseUrl+'/_index');
       }
@@ -113,10 +128,32 @@ module.exports = OfferStoreController = Controller.extend({
   destroy: function (request, response) {
     var self = this;
     var id = request.body.id;
-    self.offerStoreDao.delete(id, function () {
+    self.offerStoreDao.get(id).success( function(offerStore) {
+      self.storePhotoDao.getAllByStoreId(offerStore.id).success( function(storePhotos) {
+        if( storePhotos.length > 1 ){
+          _.forEach(storePhotos, function(storePhoto){
+            fs.unlinkSync('public/uploads/'+storePhoto.file);
+            self.storePhotoDao.delete(storePhoto.id, function(){});
+          });
+          self.offerStoreDao.delete(id, function () {
+            request.flash('success', 'Boutique supprimée');
+            response.redirect(self.baseUrl+'/_index');
+          });
+        }else{
+          fs.unlinkSync('public/uploads/'+storePhotos[0].file);
+          self.storePhotoDao.delete(storePhotos[0].id, function(){
+            self.offerStoreDao.delete(id, function () {
+              request.flash('success', 'Boutique supprimée');
+              response.redirect(self.baseUrl+'/_index');
+            });
+          });
+        }
+      });
+    });
+    /*self.offerStoreDao.delete(id, function () {
       request.flash('success', 'Boutique supprimée');
       response.redirect(self.baseUrl+'/_index');
-    });
+    });*/
   },
 
   _parseValidationError: function (modelError) {
