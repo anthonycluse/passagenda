@@ -14,7 +14,7 @@
       </div>
       <div class="form-group">
         <label for="conditions" class="control-label">Conditions</label>
-        <textarea name="offer[conditions]" id="conditions" class="form-control" cols="30" rows="10" placeholder="Conditions de l'offre" required></textarea>
+        <textarea name="offer[conditions]" id="conditions" class="form-control" cols="30" rows="10" placeholder="Conditions de l'offre"></textarea>
       </div>
       <div class="form-group">
         <label for="description" class="control-label">Description</label>
@@ -22,7 +22,7 @@
       </div>
       <div class="form-group">
         <label for="offerType" class="label-control">Type de l'offre</label>
-        <select name="offer[OfferTypeId]" id="offerType" class="form-control">
+        <select name="offer[OfferTypeId]" id="offerType" class="form-control" required>
           <% offerTypes.forEach(function(offerType){ %>
           <option value="<%=offerType.id%>"><%-offerType.name%></option>
           <% }); %>
@@ -30,7 +30,7 @@
       </div>
       <div class="form-group">
         <label for="offerCategory" class="label-control">Catégorie de l'offre</label>
-        <select name="offer[OfferCategoryId]" id="offerCategory" class="form-control">
+        <select name="offer[OfferCategoryId]" id="offerCategory" class="form-control" required>
           <% offercategories.forEach(function(offercategory){ %>
           <option value="<%=offercategory.id%>"><%-offercategory.name%></option>
           <% }); %>
@@ -38,7 +38,7 @@
       </div>
       <div class="form-group">
         <label for="offerStore" class="label-control">Boutique de l'offre</label>
-        <select name="offer[OfferStoreId]" id="offerStore" class="form-control">
+        <select name="offer[OfferStoreId]" id="offerStore" class="form-control" required>
           <% offerstores.forEach(function(offerstore){ %>
           <option value="<%=offerstore.id%>"><%-offerstore.name%></option>
           <% }); %>
@@ -49,11 +49,3 @@
     </form>
   </div>
 </div>
-<script>
-  /*CKEDITOR.replace('description',{
-    filebrowserImageUploadUrl: '/media/ckeditor/create'
-  });
-  CKEDITOR.replace('conditions',{
-    filebrowserImageUploadUrl: '/media/ckeditor/create'
-  });*/
-</script>
