@@ -44,7 +44,6 @@ module.exports = OfferStoreController = Controller.extend({
 
   _index: function(request, response) {
     var self = this;
-
     this.offerStoreDao.getAll().success( function(offerstores){
       async.map(offerstores, function(offerstore, callback){
         self.storeAddressDao.getAllByStore(offerstore.id).success( function(addresses){
@@ -58,10 +57,6 @@ module.exports = OfferStoreController = Controller.extend({
         response.render('offerStore/_index', {offerstores: transformed});
       });
     });
-
-
-
-
   },
 
   show: function(request, response) {
