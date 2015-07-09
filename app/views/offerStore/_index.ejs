@@ -21,16 +21,30 @@
           <thead>
             <tr>
               <th>Nom</th>
+              <th>Logo</th>
+              <th>Images</th>
+              <th>Adresse</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <% if( offerstores.length ){ %>
-            <% offerstores.forEach(function(offerstore){ %>
+            <% offerstores.forEach(function(store){ %>
             <tr>
-              <td><%=offerstore.name%></td>
+              <td><%=store.name%></td>
+              <td><img src="<%=store.logo%>"></td>
               <td>
-                <a href="/offerstore/delete/<%=offerstore.id%>">Supprimer</a>
+                <%store.photos.forEach( function(photo, index) { %>
+                <img src="/uploads/<%=photo.file%>" width="50px">
+                <% }); %>
+              </td>
+              <td>
+                <%store.addresses.forEach( function(address, index) { %>
+                <b>Adresse <%=index+1%> :</b> <%=address.address%>, <%=address.cp%> <%=address.city%>
+                <% }); %>
+              </td>
+              <td>
+                <a href="/offerstore/delete/<%=store.id%>">Supprimer</a>
               </td>
             </tr>
             <% }); %>

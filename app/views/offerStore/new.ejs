@@ -46,16 +46,6 @@
       </div>
 
       <div class="form-group">
-        <label for="lat" class="control-label">Lattitude</label>
-        <input type="text" id="lat" name="offerstore[lat]" class="form-control" placeholder="Lattitude" required>
-      </div>
-
-      <div class="form-group">
-        <label for="lng" class="control-label">Longitude</label>
-        <input type="text" id="lng" name="offerstore[lng]" class="form-control" placeholder="Longitude" required>
-      </div>
-
-      <div class="form-group">
         <label for="openingHours" class="control-label">Horaires d'ouverture</label>
         <textarea name="offerstore[openingHours]" class="form-control" id="openingHours" cols="30" rows="10" placeholder="Horaires d'ouverture"></textarea>
       </div>
@@ -64,6 +54,38 @@
         <label for="photos">Images</label>
         <input type="file" name="photos" class="form-control" placeholder="Images des boutiques" multiple>
         <p class="help-block">Format : JPEG</p>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <label for="lat" class="control-label">Lattitude</label>
+        <input type="text" id="lat" name="storeaddress[lat]" class="form-control" placeholder="Lattitude" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lng" class="control-label">Longitude</label>
+        <input type="text" id="lng" name="storeaddress[lng]" class="form-control" placeholder="Longitude" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address" class="control-label">Adresse</label>
+        <input type="text" id="address" name="storeaddress[address]" class="form-control" placeholder="Adresse" required>
+      </div>
+
+      <div class="form-group">
+        <label for="cp" class="control-label">Code postale</label>
+        <input type="text" id="cp" name="storeaddress[cp]" class="form-control" placeholder="Code postale" required>
+      </div>
+
+      <div class="form-group">
+        <label for="city" class="control-label">Ville</label>
+        <input type="text" id="city" name="storeaddress[city]" class="form-control" placeholder="Ville" required>
+      </div>
+
+      <div class="form-group">
+        <label for="complementary_address" class="control-label">Adresse complémentaire</label>
+        <input type="text" id="complementary_address" name="storeaddress[complementary_address]" class="form-control" placeholder="Adresse complémentaire" required>
       </div>
 
       <input type="submit" value="Enregistrer" class="btn">

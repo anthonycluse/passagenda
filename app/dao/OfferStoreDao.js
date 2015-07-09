@@ -8,7 +8,7 @@ var OfferStoreDao = function () {
 _.extend(OfferStoreDao.prototype, {
 
   getAll: function (callback) {
-    return this.context.OfferStore.findAll({include: [{ model: this.context.Offer}]});
+    return this.context.OfferStore.findAll({include: [{model: this.context.Offer}]});
   },
 
   get: function (id, callback) {

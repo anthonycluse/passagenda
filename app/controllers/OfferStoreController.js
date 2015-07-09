@@ -4,8 +4,10 @@ var securityFltrs     = require('../filters/security');
 var csrfFltrs         = require('../filters/csrf');
 var OfferStoreDao     = require('../dao/OfferStoreDao');
 var StorePhotoDao     = require('../dao/StorePhotoDao');
+var StoreAddressDao   = require('../dao/StoreAddressDao');
 var _                 = require('lodash');
 var fs                = require('fs');
+var async             = require('async');
 
 module.exports = OfferStoreController = Controller.extend({
 
@@ -14,6 +16,7 @@ module.exports = OfferStoreController = Controller.extend({
   initialize: function () {
     this.offerStoreDao = new OfferStoreDao();
     this.storePhotoDao = new StorePhotoDao();
+    this.storeAddressDao = new StoreAddressDao();
   },
 
   filters: [
@@ -40,9 +43,25 @@ module.exports = OfferStoreController = Controller.extend({
   },
 
   _index: function(request, response) {
-    this.offerStoreDao.getAll().success(function (offerstores) {
-      response.render('offerStore/_index', {'offerstores': offerstores});
+    var self = this;
+
+    this.offerStoreDao.getAll().success( function(offerstores){
+      async.map(offerstores, function(offerstore, callback){
+        self.storeAddressDao.getAllByStore(offerstore.id).success( function(addresses){
+          self.storePhotoDao.getAllByStore(offerstore.id).success( function(photos){
+            offerstore.addresses = addresses;
+            offerstore.photos = photos;
+            callback(null, offerstore);
+          });
+        });
+      }, function(err, transformed){
+        response.render('offerStore/_index', {offerstores: transformed});
+      });
     });
+
+
+
+
   },
 
   show: function(request, response) {
@@ -65,13 +84,13 @@ module.exports = OfferStoreController = Controller.extend({
   create: function (request, response) {
     var self = this;
     var offerstore = request.body.offerstore;
+    var storeaddress = request.body.storeaddress;
     var photos = request.files.photos;
     this.offerStoreDao.save(offerstore, function(modelError, offerstore){
       if(modelError){
         request.flash('danger', self._parseValidationError(modelError));
         response.redirect('/offerstore/new');
       }else{
-        console.log(photos);
         if( photos.length > 1 ){
           _.forEach(photos, function(photo){
             photo.OfferStoreId = offerstore.id;
@@ -83,8 +102,16 @@ module.exports = OfferStoreController = Controller.extend({
           photos.file = photos.name;
           self.storePhotoDao.save(photos, function(storePhoto){});
         }
-        request.flash('success', 'Boutique sauvegardée');
-        response.redirect(self.baseUrl+'/_index');
+        storeaddress.OfferStoreId = offerstore.id;
+        self.storeAddressDao.save(storeaddress, function(modelError, offerstore) {
+          if(modelError){
+            request.flash('danger', self._parseValidationError(modelError));
+            response.redirect('/offerstore/new');
+          } else {
+            request.flash('success', 'Boutique sauvegardée');
+            response.redirect(self.baseUrl+'/_index');
+          }
+        });
       }
     });
   },

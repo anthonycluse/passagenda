@@ -24,12 +24,6 @@ module.exports = function (db, Types) {
     website: {
       type: Types.STRING
     },
-    lat: {
-      type: Types.FLOAT
-    },
-    lng: {
-      type: Types.FLOAT
-    },
     openingHours: {
       type: Types.TEXT
     }
@@ -37,6 +31,7 @@ module.exports = function (db, Types) {
     classMethods:{
       associate: function (models) {
         OfferStore.hasMany(models.Offer);
+        OfferStore.hasMany(models.StoreAddress);
       }
     }
   });

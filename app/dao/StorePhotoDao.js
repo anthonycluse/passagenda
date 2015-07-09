@@ -11,9 +11,9 @@ _.extend(StorePhotoDao.prototype, {
     return this.context.StorePhoto.findAll();
   },
 
-  getAllByStoreId: function (id, callback) {
+  getAllByStore: function (id, callback) {
     return this.context.StorePhoto.findAll({where: {OfferStoreId: id}});
-  }, 
+  },
 
   get: function (id, callback) {
     return this.context.StorePhoto.find(id);
