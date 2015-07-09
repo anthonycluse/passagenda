@@ -41,6 +41,7 @@
               <th>Date de fin</th>
               <th>Type de l'offre</th>
               <th>Catégorie de l'offre</th>
+              <th>Boutique de l'offre</th>
               <th>Description</th>
               <th>Action</th>
             </tr>
@@ -54,6 +55,7 @@
               <td><%=formatDate(offer.endDate)%></td>
               <td><%=offer.OfferType.name%></td>
               <td><%=offer.OfferCategory.name%></td>
+              <td><%=offer.OfferStore.name%></td>
               <td><%=offer.description.substr(0, 20)%>...</td>
               <td>
                 <a href="/offer/edit/<%=offer.id%>">Modifier</a> |
