@@ -1,0 +1,13 @@
+<% layout('../_layout'); %>
+<div class="ui-block">
+  <div class="ui-block-title"><h5>Suppression de l'adresse "<%-storeaddress.id%>"</h5></div>
+  <div class="ui-block-content">
+    <p>Voulez vous vraiment supprimer l'adresse "<%-storeaddress.id%>" ?</p>
+    <form action="/storeaddress/destroy" method="post" class="form">
+      <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+      <input type="hidden" name="id" value="<%=storeaddress.id%>">
+      <input type="submit" class="btn btn-default" value="Oui la supprimer">
+      <div class="clear"></div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<% layout('layout'); %>
+
+<div class="sub-header">
+  <div class="container">
+    <div class="grid-12"><h2>Connexion</h2></div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="grid-12">
+    <div class="space20"></div>
+    <form action="/api/user/logon" class="form" method="post">
+      <div class="form-group">
+        <label>Nom utilisateur</label>
+        <input class="form-control" type="text" name="username" placeholder="Nom utilisateur" required>
+      </div>
+      <div class="form-group">
+        <label>Mot de passe</label>
+        <input class="form-control" type="password" name="password" placeholder="Mot de passe" required>
+      </div>
+      <input type="submit" value="Connexion" class="btn">
+      <div class="clear"></div>
+      <div class="space20"></div>
+    </form>
+  </div>
+  <div class="clear"></div>
+</div>

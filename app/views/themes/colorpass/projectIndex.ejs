@@ -1,0 +1,69 @@
+<% layout('layout'); %>
+
+<div class="sub-header">
+  <div class="container">
+    <div class="grid-12"><h2>Portfolio</h2></div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<div class="portfolio">
+  <div class="container">
+    <div class="grid-12">
+      <div class="rw">
+        <div class="space20"></div>
+        <% if( projects.length >= 1 ){ %>
+        <ol class="breadcrumbs">
+          <li><a href="/project">Mes projets</a></li>
+          <div class="clear"></div>
+        </ol>
+        <div class="space20"></div>
+        <div class="projects">
+          <% var i = 0; %>
+
+          <% projects.forEach(function(project, index){ %>
+
+          <% if( i === 0 ){ %>
+          <div class="grid-4 alpha">
+            <div class="project" data-id="<%-project.id%>">
+              <img src="/uploads/<%-project.thumbnail%>" alt="">
+            </div>
+          </div>
+          <% } %>
+
+          <% if( i === 1 ){ %>
+          <div class="grid-4">
+            <div class="project" data-id="<%-project.id%>">
+              <img src="/uploads/<%-project.thumbnail%>" alt="">
+            </div>
+          </div>
+          <% } %>
+
+          <% if( i === 2 ){ %>
+          <div class="grid-4 omega">
+            <div class="project" data-id="<%-project.id%>">
+              <img src="/uploads/<%-project.thumbnail%>" alt="">
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="space20"></div>
+          <% i = -1; %>
+          <% } %>
+
+          <% i++; %>
+
+          <% }); %>
+        </div>
+        <% }else{ %>
+        <div class="alert alert-info">
+          Il n'y a aucun projet.
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="space20"></div>
+  </div>
+</div>
+
+

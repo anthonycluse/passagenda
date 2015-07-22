@@ -1,0 +1,52 @@
+<% layout('../_layout'); %>
+<div class="grid-12">
+  <div class="panel">
+    <div class="ui-tool">
+      <ul>
+        <li><a href="/storeaddress/_index">Liste des adresses</a></li>
+        <!--<li><a href="/storeaddress/new">Ajouter une adresse</a></li>-->
+        <div class="clear"></div>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="space10"></div>
+<div class="grid-12">
+  <div class="ui-block">
+    <div class="ui-block-title"><h5>Liste des boutiques</h5></div>
+    <div class="ui-block-content">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Adresse</th>
+              <th>Code postale</th>
+              <th>Ville</th>
+              <th>Adresse complémantaire</th>
+              <th>Coordonnées</th>
+              <!--<th>Action</th>-->
+            </tr>
+          </thead>
+          <tbody>
+            <% if( storeAddresses.length ){ %>
+            <% storeAddresses.forEach(function(address){ %>
+            <tr>
+              <td><%=address.address%></td>
+              <td><%=address.cp%></td>
+              <td><%=address.city%></td>
+              <td><%=address.complementary_address%></td>
+              <td><%=address.lat%> / <%=address.lng%></td>
+              <!--<td><a href="/storeaddress/delete/<%=address.id%>">Supprimer</a></td>-->
+            </tr>
+            <% }); %>
+            <% }else{ %>
+            <tr><td><p class="danger" style="text-align: left;">Aucune adresse</p><td></td></tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

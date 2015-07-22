@@ -3,6 +3,7 @@
  */
 var Controller    = require('microscope-web').Controller;
 var UserDao       = require('../dao/UserDao');
+var LinkDao       = require('../dao/LinkDao');
 var passport      = require('passport');
 var securityFltrs = require('../filters/security');
 var csrfFltrs     = require('../filters/csrf');
@@ -15,7 +16,11 @@ var fs            = require('fs');
 module.exports = AccountController = Controller.extend({
 
   baseUrl: "/user",
-  userDao: new UserDao(),
+
+  initialize: function () {
+    this.linkDao = new LinkDao();
+    this.userDao = new UserDao();
+  },
 
   filters:[
     csrfFltrs.csrf
@@ -25,6 +30,7 @@ module.exports = AccountController = Controller.extend({
     'get /'                : { action: 'login', filters:[csrfFltrs.antiForgeryToken] },
     'get /_index'          : { action: '_index', filters:[csrfFltrs.antiForgeryToken, securityFltrs.authorizeSuperAdmin] },
     'get /login'           : { action: 'login', filters:[csrfFltrs.antiForgeryToken] },
+    'get /signin'          : { action: 'signin', filters:[csrfFltrs.antiForgeryToken] },
     'post /signup'         : { action: 'signup' },
     'get /register'        : { action: 'register', filters:[csrfFltrs.antiForgeryToken, securityFltrs.authorizeAdmin] },
     'get /logout'          : { action: 'logout' },
@@ -118,6 +124,11 @@ module.exports = AccountController = Controller.extend({
     var returnUrl = request.query.returnUrl;
     if( !returnUrl ) returnUrl = '/';
     response.render('user/login', {returnUrl: returnUrl, layoutFile: false});
+  },
+  signin: function(request, response) {
+    this.linkDao.getAllByOrder().success( function(links){
+      response.render('themes/'+response.locals.options.theme+'/login', {layoutFile: false, links: links});
+    });
   },
 
   /**

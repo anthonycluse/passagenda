@@ -1,6 +1,6 @@
 {
     "pack": "avantage",
-    "mode": "2",
+    "mode": "1",
     "title": "",
     "lat": "",
     "lng": "",
@@ -43,7 +43,7 @@
     "email": "",
     "phone": "",
     "idga": "",
-    "theme": "basique",
+    "theme": "colorpass",
     "firstname": "",
     "lastname": "",
     "compagny": "",
